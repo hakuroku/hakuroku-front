@@ -1,10 +1,10 @@
 import { TopImgsView } from "../components/TopImgsView";
-import { ImgsCount } from "../hooks/activeUIStore";
+import { Count } from "../hooks/activeUIStore";
 import { ListContainer } from "../components/ListContainer";
 
 export const Top = () => {
 
-    const {count} = ImgsCount();
+    const {count} = Count();
 // -------------------------データ（仮）---------------------
 interface iconItem {
     topImg: string;

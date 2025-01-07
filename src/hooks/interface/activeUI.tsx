@@ -1,4 +1,4 @@
-export interface topViewCount {
+export interface Counter {
     count: number;
     setCount: (c: number) => void
 }

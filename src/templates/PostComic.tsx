@@ -7,7 +7,7 @@ export const PostComic = () => {
 
     const postData = async () => {
         try {
-            const postUrl = 'http://127.0.0.1:8000/api/upload'
+            const postUrl: string = 'http://127.0.0.1:8000/api/upload'
             const data = {
                 comic_content: comic_content,
                 comic_title: comic_title,
@@ -21,7 +21,6 @@ export const PostComic = () => {
                     'Content-Type': 'multipart/form-data',
                 }
             });
-
             console.log('Response:', response.data);
         } catch {
             console.error('Error')

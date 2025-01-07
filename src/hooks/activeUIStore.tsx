@@ -1,7 +1,7 @@
 import { create } from 'zustand'
-import { topViewCount } from './interface/activeUI'
+import { Counter } from './interface/activeUI'
 
-export const ImgsCount = create<topViewCount>((set) => ({
+export const Count = create<Counter>((set) => ({
     count: 0,
     setCount: (c) => set({count: c})
 }))  
