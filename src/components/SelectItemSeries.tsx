@@ -1,18 +1,20 @@
+import { usePostData } from "../hooks/dataStore";
 import { useActive } from "../hooks/activeUIStore";
-import { usePostData, useSeriesGetData } from "../hooks/dataStore"
 
-// const { setSeriesTitle, setSeriesId } = usePostData();
-const { series } = useSeriesGetData();
-const { setSeriesModal, seriesSelect, setSeriesSelect } = useActive();
+interface SeriesInfo {
+    series_id: number;
+    series_title: string;
+    seriesItem: object;}
 
-export const SelectItemSeries = () => {
+export const SelectItemSeries: React.FC<SeriesInfo> = (seriesItem) => {
+    const { setSeriesTitle, setSeriesId } = usePostData();
+    const { setSeriesModal, seriesSelect, setSeriesSelect } = useActive();
+
     if (seriesSelect) {
         return (
             <div>
-                {series.map(s => (
-                    <div className="hover:bg-accent_C " onClick={() => { ; setSeriesSelect(!seriesSelect);  }}><span className="hover:cursor-default">仮タイトル</span></div>
-                ))}
-                <div className="hover:bg-accent_C" onClick={() => { setSeriesModal(true) }}><span className="hover:cursor-default">シリーズを作成する</span></div>
+                <div className="hover:bg-accent_C " onClick={() => { setSeriesTitle(seriesItem.series_title); setSeriesSelect(!seriesSelect); setSeriesId(seriesItem.series_id);  }}><span className="hover:cursor-default">{seriesItem.series_title}</span></div>
+                
             </div>
 
         )
