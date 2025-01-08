@@ -13,6 +13,6 @@ export const TopIconList: React.FC<topIconImg> = ({id, iconImg}) => {
     } 
 
     return (
-            <div className="border-2 w-16 h-64 overflow-hidden shadow-xl" id="comic-icon_frame" ><img src={iconImg} className="size-full" onMouseOver={() => { hoverSlide() }}/></div>
+            <div className="border-2 border-gray-200 w-16 h-64 overflow-hidden shadow-xl" id="comic-icon_frame" ><img src={iconImg} className="size-full object-cover" onMouseOver={() => { hoverSlide() }}/></div>
     )
 }

@@ -12,24 +12,24 @@ export const Top = () => {
     const selectIcon: temporaryIconItem[] = [
         {
 
-            topImg: './images/1.png',
-            iconImg: './images/1.png'
+            topImg: './images/sample1.jpg',
+            iconImg: './images/icon1.jpg'
         },
         {
-            topImg: './images/a.png',
-            iconImg: './images/a.png'
+            topImg: './images/sample2.jpg',
+            iconImg: './images/icon2.jpg'
         },
         {
-            topImg: './images/b.png',
-            iconImg: './images/b.png'
+            topImg: './images/sample3.jpg',
+            iconImg: './images/icon3.jpg'
         },
         {
-            topImg: './images/c.png',
-            iconImg: './images/c.png'
+            topImg: './images/sample4.jpg',
+            iconImg: './images/icon4.jpg'
         },
         {
-            topImg: './images/d.png',
-            iconImg: './images/d.png'
+            topImg: './images/sample5.jpg',
+            iconImg: './images/icon5.jpg'
         }
     ];
 
@@ -66,14 +66,11 @@ useEffect(() => {
             <div className="flex justify-around items-center w-4/5 m-auto py-10">
                 <img src="./images/allow-left.svg" className="w-10 px-2 py-8 bg-main_C hover:bg-main_C/75" onClick={() => {minusCount()}} />
                 <div className="w-4/5 h-[500px] m-auto shadow-md shadow-main_C border-2 border-main_C overflow-hidden">
-                    <div className="w-screen h-full bg-gray-200" >
                         {selectIcon.map((t, index) => {
-                            {console.log(count)}
                             if (count == index) {
                                 return <TopImgsView {...t} key={index}  topImg={t.topImg}/>
                             }
                         })}
-                    </div>
                 </div>
                 <img src="./images/allow-right.svg" className="w-10 px-2 py-8 bg-main_C hover:bg-main_C/75" onClick={() => {plusCount()}} />
             </div>
