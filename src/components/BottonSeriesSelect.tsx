@@ -20,6 +20,7 @@ export const ButtonSeriesSelect = () => {
                     <>
                         <div className="hover:bg-accent_C" onClick={() => { setSeriesSelect(!seriesSelect) }}><span className="hover:cursor-default">シリーズを選択する</span></div>
                         {series.map((s,index) => <SelectItemSeries key={index} seriesItem={s} series_title={s.series_title} series_id={s.series_id}/> )}
+                        {seriesSelect === true ? (<div className="hover:bg-accent_C" onClick={() => { setSeriesModal(true) }}><span className="hover:cursor-default">シリーズを作成する</span></div>) : null}
                         
                     </>
                     ) : (
