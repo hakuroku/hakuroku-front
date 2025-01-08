@@ -15,6 +15,6 @@ export interface PostDataStore {
 }
 
 export interface GetSeriesDataStore {
-    series: object[];
+    series: {series_id: number, series_title: string}[];
     setSeries: (seriesList: object[]) => void
 }
