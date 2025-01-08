@@ -1,6 +1,6 @@
 import { useActive } from "../hooks/activeUIStore";
 import { usePostData, useSeriesGetData } from "../hooks/dataStore"
-import { SelectItemSeries } from "./SelectItemSeries";
+// import { SelectItemSeries } from "./SelectItemSeries";
 
 export const ButtonSeriesSelect = () => {
     const { series } = useSeriesGetData();
@@ -19,12 +19,12 @@ export const ButtonSeriesSelect = () => {
                 {series_title === '' ? (
                     <>
                         <div className="hover:bg-accent_C" onClick={() => { setSeriesSelect(!seriesSelect) }}><span className="hover:cursor-default">シリーズを選択する</span></div>
-                        <SelectItemSeries />
+                        {/* <SelectItemSeries /> */}
                     </>
                 ) : (
                     <>
                         <div className="hover:bg-accent_C" onClick={() => { setSeriesSelect(!seriesSelect) }}><span className="hover:cursor-default">{series_title}</span></div>
-                        <SelectItemSeries />
+                        {/* <SelectItemSeries /> */}
                     </>
                 )
                 }

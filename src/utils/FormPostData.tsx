@@ -2,6 +2,7 @@ import axios from 'axios';
 import { usePostData, useSeriesGetData } from '../hooks/dataStore';
 import { ComicDropZone } from '../components/ComicDropZone';
 import { useEffect } from 'react';
+import { ButtonSeriesSelect } from '../components/BottonSeriesSelect';
 
 export const FormPostData = () => {
     const { comic_content, comic_title, series_id, author_name, setComicTitle, setAuthorName } = usePostData();
@@ -69,7 +70,7 @@ export const FormPostData = () => {
         
                             <div className="flex justify-center mb-10 mx-auto">
                                 <p className="text-white"><span>シリーズ：</span></p>
-                                {/* <SeriesCreateButton /> */}
+                                <ButtonSeriesSelect />
                             </div>
         
                             <button type="submit" className="mb-10 px-7 py-2 bg-accent_C rounded-lg hover:bg-accent2_C"><span className="text-white">掲載する</span></button>
