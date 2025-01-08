@@ -5,6 +5,6 @@ interface topViewImg {
 export const TopImgsView: React.FC<topViewImg> = ({ topImg }) => {
 
     return (
-        <div><img src={topImg} className="w-full" /></div>
+        <div className="animate-fade-out"><img src={topImg} className="w-full" /></div>
     )
 }

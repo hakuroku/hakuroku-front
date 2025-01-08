@@ -54,7 +54,7 @@ export const Top = () => {
 // -------------------------autoSlider---------------------
 
 useEffect(() => {
-    const interval = setInterval(plusCount, 5000);
+    const interval = setInterval(plusCount, 6000);
     return () => clearInterval(interval)
 }, [count])
 
@@ -66,7 +66,7 @@ useEffect(() => {
             <div className="flex justify-around items-center w-4/5 m-auto py-10">
                 <img src="./images/allow-left.svg" className="w-10 px-2 py-8 bg-main_C hover:bg-main_C/75" onClick={() => {minusCount()}} />
                 <div className="w-4/5 h-[500px] m-auto shadow-md shadow-main_C border-2 border-main_C overflow-hidden">
-                    <div className="w-screen h-full" >
+                    <div className="w-screen h-full bg-gray-200" >
                         {selectIcon.map((t, index) => {
                             {console.log(count)}
                             if (count == index) {

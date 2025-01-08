@@ -12,14 +12,25 @@ export default {
       'red': 'red',
     },
     extend: {
+      animation: {
+        "fade-out": "fade-out 2s ease   both"
+      },
+      keyframes: {
+        "fade-out": {
+          "0%": {opacity: "0"},
+            to: {opacity: "1"},
+        }
+      },
       colors: {
         gray: {
           100: '#f3f4f6',
           200: '#e5e7eb'
+            }
+          }   
         }
-      }
-    },
-  },
-  plugins: [],
-}
+      },
+      plugins: [],
+    }
+  
+
 
