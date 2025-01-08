@@ -3,12 +3,15 @@ import { usePostData, useSeriesGetData } from '../hooks/dataStore';
 import { ComicDropZone } from '../components/ComicDropZone';
 import { useEffect } from 'react';
 import { ButtonSeriesSelect } from '../components/BottonSeriesSelect';
-// import { ModalSeriesForm } from '../components/ModalSeriesForm'
 
 export const FormPostData = () => {
     const { comic_content, comic_title, series_id, author_name, setComicTitle, setAuthorName } = usePostData();
     const { setSeries } = useSeriesGetData();
 
+    console.log(comic_content);
+    console.log(series_id);
+    console.log(comic_title);
+    console.log(author_name);
 // -------------------------データ送信---------------------
     const PostComicData = async () => {
         try {
