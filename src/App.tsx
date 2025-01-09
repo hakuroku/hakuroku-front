@@ -6,7 +6,7 @@ import { PostComic } from "./templates/PostComic";
 
 export const App = () => {
   return (
-    <div className='bg-black'>
+    <div className='bg-black min-h-screen'>
       <BrowserRouter>
         <Header></Header>
         <Routes>
