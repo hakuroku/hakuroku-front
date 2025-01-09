@@ -1,5 +1,5 @@
 import axios from "axios";
-import { usePostData, useSeriesGetData} from "../hooks/dataStore";
+import { usePostData} from "../hooks/dataStore";
 import { useActive } from "../hooks/activeUIStore";
 import { getData } from "./getData";
 
@@ -7,7 +7,6 @@ import { getData } from "./getData";
 
 export const FormSeriesCreate  = () => {
     const { series_title, series_caption, setSeriesTitle, setSeriesCaption} = usePostData();
-    const { series } = useSeriesGetData();
     const {setSeriesModal} = useActive();
 // -------------------------データ送信---------------------
     const postData = async () => {
