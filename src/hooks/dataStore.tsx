@@ -2,12 +2,12 @@ import { create } from "zustand";
 import { PostDataStore, GetSeriesDataStore} from "./interface/comicData";
 
 export const usePostData = create<PostDataStore>((set)=> ({
-    comic_content: [],
-    comic_title: undefined,
-    series_id: undefined,
-    author_name: undefined,
-    series_title: undefined,
-    series_caption: undefined,
+    comic_content: null,
+    comic_title: '',
+    series_id: null,
+    author_name: '',
+    series_title: '',
+    series_caption: '',
 
     setComicContent: (contentList) => set({ comic_content: contentList }),
     setComicTitle: (comicTitle) => set({ comic_title: comicTitle }),

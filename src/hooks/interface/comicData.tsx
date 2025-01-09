@@ -1,12 +1,12 @@
 export interface PostDataStore {
-    comic_content: object[];
-    comic_title?: string;
-    series_id?: number;
-    author_name?: string;
-    series_title?: string;
-    series_caption?: string;
+    comic_content: FileList | null;
+    comic_title: string;
+    series_id: number | null;
+    author_name: string;
+    series_title: string;
+    series_caption: string;
 
-    setComicContent: (contentList: object[]) => void;
+    setComicContent: (contentList: FileList | null) => void;
     setComicTitle: (comicTitle: string) => void;
     setSeriesId: (seriesId: number) => void;
     setAuthorName: (authorName: string) => void;

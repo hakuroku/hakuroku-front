@@ -6,7 +6,7 @@ import { ButtonSeriesSelect } from '../components/BottonSeriesSelect';
 import { ModalSeriesForm } from '../components/ModalSeriesForm';
 
 export const FormPostData = () => {
-    const { comic_content, comic_title, series_id, author_name, setComicTitle, setAuthorName } = usePostData();
+    const { comic_content, comic_title, series_id, author_name, setComicContent,setComicTitle, setAuthorName } = usePostData();
     const { setSeries } = useSeriesGetData();
 
     console.log(comic_content);
@@ -17,16 +17,27 @@ export const FormPostData = () => {
     const PostComicData = async () => {
         try {
             const url = 'http://127.0.0.1:8000/api/upload'
-            const data = {
-                comic_content: comic_content,
-                comic_title: comic_title,
-                series_id: series_id,
-                author_name: author_name
+            const formData = new FormData;
+
+            if (comic_content) {
+                Array.from(comic_content).forEach((file)=> {
+                    formData.append('comic_content[]', file);
+                });
             }
 
-            const response = await axios.post(url, data, {
+            formData.append('comic_title', comic_title,);
+            if (series_id !== null) {
+                formData.append('series_id', series_id.toString())
+            }
+            formData.append('author_name', author_name);
+
+            for (let pair of formData.entries()) {
+                console.log(pair[0], pair[1]); // ここで送信するデータが正しく含まれているか確認
+            }
+
+            const response = await axios.post(url, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    
                 }
             });
 
@@ -40,6 +51,12 @@ export const FormPostData = () => {
     const handlePostSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         PostComicData();
+    }
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            setComicContent(e.target.files);
+        }
     }
 
     // -------------------------データ取得---------------------
@@ -65,7 +82,7 @@ export const FormPostData = () => {
         <form onSubmit={handlePostSubmit} encType="multipart/form-data" className="text-center">
         
                             <ComicDropZone />
-                            <input type="file" name="comic_content[]" multiple className="mb-10 text-white" />
+                            <input type="file" name="comic_content[]" multiple className="mb-10 text-white" onChange={handleFileChange}/>
                             <br />
         
                             <p><label ><span className="text-white">作品名：</span><input type="text" name="comic_title" className="mb-3 p-1 h-6 w-60 outline-none" onChange={(e) => setComicTitle(e.target.value)} /></label><br /></p>

@@ -1,12 +1,13 @@
 import axios from "axios";
 import { usePostData, useSeriesGetData} from "../hooks/dataStore";
 import { useActive } from "../hooks/activeUIStore";
+import { getData } from "./getData";
 
 
 
 export const FormSeriesCreate  = () => {
     const { series_title, series_caption, setSeriesTitle, setSeriesCaption} = usePostData();
-    // const { series } = useSeriesGetData();
+    const { series } = useSeriesGetData();
     const {setSeriesModal} = useActive();
 // -------------------------データ送信---------------------
     const postData = async () => {
@@ -22,7 +23,7 @@ export const FormSeriesCreate  = () => {
                 }
             });
             console.log('Response:', response.data);
-            // await getData(series);
+            await getData('getSeries');
             setSeriesModal(false)
         } catch {
             console.error('データの送信が失敗しました')

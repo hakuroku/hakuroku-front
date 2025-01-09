@@ -6,7 +6,6 @@ export const ButtonSeriesSelect = () => {
     const { series } = useSeriesGetData();
     const { series_title } = usePostData();
     const { setSeriesModal, seriesSelect, setSeriesSelect }= useActive()
-    console.log(series_title) 
     if (series.length === 0) {
         return (
             <div className="w-60 h-fit mb-10 bg-accent2_C hover:bg-accent_C rounded-md" onClick={() => { setSeriesModal(true) }}>
@@ -16,7 +15,7 @@ export const ButtonSeriesSelect = () => {
     } else if (series.length > 0) {
         return (
             <div className="border-2 bg-white w-60">
-                {series_title === undefined || '' ? (
+                {series_title === '' ? (
                     <>
                         <div className="hover:bg-accent_C" onClick={() => { setSeriesSelect(!seriesSelect) }}><span className="hover:cursor-default">シリーズを選択する</span></div>
                         {series.map((s,index) => <SelectItemSeries key={index} seriesItem={s} series_title={s.series_title} series_id={s.series_id}/> )}
