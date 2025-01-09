@@ -1,18 +1,19 @@
 import axios from 'axios';
 import { usePostData, useSeriesGetData } from '../hooks/dataStore';
 import { ComicDropZone } from '../components/ComicDropZone';
+import { FormComicUpload } from '../components/FormComicUpload';
 import { useEffect } from 'react';
 import { ButtonSeriesSelect } from '../components/BottonSeriesSelect';
 import { ModalSeriesForm } from '../components/ModalSeriesForm';
 
 export const FormPostData = () => {
-    const { comic_content, comic_title, series_id, author_name, setComicContent,setComicTitle, setAuthorName } = usePostData();
+    const { comic_content, comic_title, series_id, author_name, setComicTitle, setAuthorName } = usePostData();
     const { setSeries } = useSeriesGetData();
 
-    console.log(comic_content);
-    console.log(series_id);
-    console.log(comic_title);
-    console.log(author_name);
+    // console.log(comic_content);
+    // console.log(series_id);
+    // console.log(comic_title);
+    // console.log(author_name);
 // -------------------------データ送信---------------------
     const PostComicData = async () => {
         try {
@@ -53,12 +54,7 @@ export const FormPostData = () => {
         PostComicData();
     }
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            setComicContent(e.target.files);
-        }
-    }
-
+    
     // -------------------------データ取得---------------------
 
     const getData = async () => {
@@ -80,15 +76,11 @@ export const FormPostData = () => {
     return (
         <>
         <form onSubmit={handlePostSubmit} encType="multipart/form-data" className="text-center">
-        
+                             
                             <ComicDropZone />
-                            <input type="file" name="comic_content[]" multiple className="mb-10 text-white" onChange={handleFileChange}/>
-                            <br />
-        
-                            <p><label ><span className="text-white">作品名：</span><input type="text" name="comic_title" className="mb-3 p-1 h-6 w-60 outline-none" onChange={(e) => setComicTitle(e.target.value)} /></label><br /></p>
-        
-                            <p><label><span className="text-white">著者名：</span><input type="text" name="author_name" className="mb-4 p-1 h-6 w-60 outline-none" onChange={(e) => setAuthorName(e.target.value)} /></label><br /></p>
-        
+
+                            <FormComicUpload setComicTitle={setComicTitle} item={'作品名：'}/>
+                            <FormComicUpload setComicTitle={setAuthorName} item={'著者名：'}/>
         
                             <div className="flex justify-center mb-10 mx-auto">
                                 <p className="text-white"><span>シリーズ：</span></p>
