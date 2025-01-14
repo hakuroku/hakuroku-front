@@ -7,6 +7,6 @@ interface topViewImg {
 export const TopImgsView: React.FC<topViewImg> = ({ topImg }) => {
 
     return (
-        <Link to="#"><div className="animate-fade-out h-full bg-gray-200"><img src={topImg} className="object-cover w-full h-full" /></div></Link>
+        <Link to="/ComicPage"><div className="animate-fade-out h-full bg-gray-200"><img src={topImg} className="object-cover w-full h-full" /></div></Link>
     )
 }

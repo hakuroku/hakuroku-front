@@ -5,6 +5,8 @@ import { FormComicUpload } from '../components/FormComicUpload';
 import { useEffect } from 'react';
 import { ButtonSeriesSelect } from '../components/BottonSeriesSelect';
 import { ModalSeriesForm } from '../components/ModalSeriesForm';
+import { GetSeriesDataStore } from '../hooks/interface/comicData';
+import { getData } from './getData';
 
 export const FormPostData = () => {
     const { comic_content, comic_title, series_id, author_name, setComicTitle, setAuthorName } = usePostData();
@@ -56,23 +58,13 @@ export const FormPostData = () => {
 
     
     // -------------------------データ取得---------------------
-
-    const getData = async () => {
-        try {
-            const url = 'http://127.0.0.1:8000/api/getSeries';
-            const response = await axios.get(url);
-            const result = response.data;
-            console.log(result);
-            setSeries(result);
-        } catch (error) {
-            console.error('データを取得できませんでした。')
-        }
-    }
-
     useEffect(() => {
-        getData();
+        getData<{series_id: number, series_title: string}[]>('getSeries')
+        .then((data) => setSeries(data))
+        .catch((error) => console.error(error))
     }, [])
 
+    
     return (
         <>
         <form onSubmit={handlePostSubmit} encType="multipart/form-data" className="text-center">

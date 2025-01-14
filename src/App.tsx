@@ -3,6 +3,7 @@ import { Header } from "./templates/Header";
 import { Top } from "./templates/Top";
 import { Footer } from "./templates/Footer";
 import { PostComic } from "./templates/PostComic";
+import { ComicPage } from "./components/ComicPage";
 
 export const App = () => {
   return (
@@ -12,6 +13,7 @@ export const App = () => {
         <Routes>
           <Route path='/' element={<Top/>} />
           <Route path='/PostComic' element={<PostComic/> }/>
+          <Route path='/ComicPage' element={<ComicPage/>}/>
         </Routes>
         <Footer></Footer>
       </BrowserRouter>
