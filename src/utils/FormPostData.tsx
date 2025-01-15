@@ -12,10 +12,10 @@ export const FormPostData = () => {
     const { comic_content, comic_title, series_id, author_name, setComicTitle, setAuthorName } = usePostData();
     const { setSeries } = useSeriesGetData();
 
-    // console.log(comic_content);
-    // console.log(series_id);
-    // console.log(comic_title);
-    // console.log(author_name);
+    console.log(comic_content);
+    console.log(series_id);
+    console.log(comic_title);
+    console.log(author_name);
 // -------------------------データ送信---------------------
     const PostComicData = async () => {
         try {
@@ -40,7 +40,6 @@ export const FormPostData = () => {
 
             const response = await axios.post(url, formData, {
                 headers: {
-                    
                 }
             });
 
