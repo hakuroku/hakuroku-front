@@ -1,7 +1,10 @@
 import { ComicViewer } from "./ComicViewer"
 import { Series } from "../templates/Series"
+// import { getData } from "../utils/getData"
 
 export const ComicPage = () => {
+
+    
 
 const comicPages = [
     './images/I wish/I wish_001.jpg',
