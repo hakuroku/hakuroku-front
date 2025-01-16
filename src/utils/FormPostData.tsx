@@ -5,7 +5,6 @@ import { FormComicUpload } from '../components/FormComicUpload';
 import { useEffect } from 'react';
 import { ButtonSeriesSelect } from '../components/BottonSeriesSelect';
 import { ModalSeriesForm } from '../components/ModalSeriesForm';
-import { GetSeriesDataStore } from '../hooks/interface/comicData';
 import { getData } from './getData';
 
 export const FormPostData = () => {

@@ -16,8 +16,10 @@ export const dropHandler = (e: React.DragEvent<HTMLDivElement>, t: File[] | null
 
 export const addFiles = (newFiles: FileList | null, t: File[] | null): File[] | null => {
     if (newFiles) {
+        const AllowedTypes = ['image/jpeg', 'application/pdf']; //jpeg と pdf の MIMEタイプ
+        const newFilesArray = Array.from(newFiles).filter(file => AllowedTypes.includes(file.type));
+        //フィルタリングしたファイルのみ追加
         const result = (prevFiles: File[] | null): File[] => {
-            const newFilesArray = Array.from(newFiles);
             return prevFiles ? [...prevFiles, ...newFilesArray] : newFilesArray;
         };
         return result(t)
