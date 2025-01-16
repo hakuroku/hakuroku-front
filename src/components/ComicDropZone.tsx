@@ -22,7 +22,7 @@ export const ComicDropZone = () => {
         }
     }
     
-    if (comic_content === null) {
+    if (comic_content === null || comic_content?.length === 0) {
         return (
             <div>
                 <div className="border-2 border-white h-52 bg-white my-3" onDrop={(e)=> setComicContent(dropHandler(e, comic_content))} onDragOver={(e)=> dragOverHandler(e)}>
@@ -62,7 +62,7 @@ export const ComicDropZone = () => {
             {comic_content.map((file, index) => {
                         const fileURL = URL.createObjectURL(file);
                         return (
-                            <div className="">
+                            <div>
                                 <div className="bg-gray-200 w-[200px] m-auto px-4 pb-2 pt-4 flex my-[32px] relative">
                                     <img src="./images/batu_icon.svg" alt="" className="w-10 absolute top-2 right-2 hover:cursor-pointer" onClick={() => { setComicContent(deleteFile(index)) }} />
                                     <img src={fileURL} alt={`image-${index}`} className="m-auto border-2 border-black"/>

@@ -8,7 +8,7 @@ export const Header = () => {
 
                 <div className="flex items-center">
                     <ul className='flex items-center gap-4 pr-8'>
-                        <li className=" hover:text-accent2_C">ダッシュボード</li>
+                        <Link to='/DashBoard'><li className=" hover:text-accent2_C">ダッシュボード</li></Link>
                         <Link to='/PostComic'><li className=" hover:text-accent2_C">作品投稿</li></Link>
                     </ul>
                     <input type="search" className="border-2 outline-none px-1" />
