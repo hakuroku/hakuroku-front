@@ -7,8 +7,9 @@ export const ButtonSeriesSelect = () => {
     const { series_title } = usePostData();
     const { setSeriesModal, seriesSelect, setSeriesSelect }= useActive()
 
+    console.log(series)
 
-    if (series.length === 0) {
+    if (series === undefined || series.length ===  0) {
         return (
             <div className="w-60 h-fit mb-10 bg-accent2_C hover:bg-accent_C rounded-md" onClick={() => { setSeriesModal(true) }}>
                 <div className="py-1 px-8 text-white">シリーズを作成する</div>
