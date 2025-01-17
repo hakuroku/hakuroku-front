@@ -19,13 +19,17 @@ export const ComicViewer: React.FC<ComicViewerProps> = ({pages}) => {
         }
     }
 
-    console.log(currentPage)
+    const pagesLength = pages.length;
+    const progressPercentage = Math.min((currentPage/pagesLength) * 100, 100);
+
+
+    console.log(progressPercentage)
     return (
         <div>
-            <div className="relative bg-lack">
+            <div className="relative bg-black">
                 <div className="flex justify-center h-screen ">
                     <div></div>
-                    {currentPage > pages.length - 1 ? null : <img src={pages[currentPage]} alt={`Page ${currentPage - 1}`} />}
+                    {currentPage > pagesLength - 1 ? null : <img src={pages[currentPage]} alt={`Page ${currentPage - 1}`} />}
                     
                     {currentPage === 0 ? null : <img src={pages[currentPage -1]} alt={`Page ${currentPage}`}/>}
                     
@@ -35,12 +39,22 @@ export const ComicViewer: React.FC<ComicViewerProps> = ({pages}) => {
                     <div onClick={() => {goToPrevPage()}} className="h-full w-1/4 absolute top-[0] right-[0] flex hover:cursor-pointer"><img src="./images/allow-right.svg" alt="" className="w-10 ml-auto"/></div>
                 </div>
             </div>
-            <div className="text-center">
+            <div className="flex justify-between items-center w-full">
                 
-                {(currentPage + 1) > pages.length ?
-                    <p  className="p-3 bg-gray-100 text-4xl ">＜{currentPage}/{pages.length}＞</p> : 
-                    <p  className="p-3 bg-gray-100 text-4xl ">＜{currentPage + 1}/{pages.length}＞</p>
-                }
+                <div className="w-full bg-black rounded-xl">
+                    <div className=" h-[8px] bg-main_C rounded-xl" style={{
+                        width: `${progressPercentage}%`,
+                        }}>
+                    </div>
+                </div>
+                
+                <div className="w-fit">
+                    {(currentPage + 1) > pages.length ?
+                        <p className="p-3 bg-gray-100 text-4xl ">&lt;{currentPage}/{pagesLength}&gt;</p> :
+                        <p className="p-3 bg-gray-100 text-4xl ">&lt;{currentPage + 1}/{pagesLength}&gt;</p>
+                    }
+                </div>
+                
                 
             </div>
         </div>
