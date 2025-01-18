@@ -1,10 +1,8 @@
 export const dragOverHandler = (e: React.DragEvent<HTMLDivElement>):void => {
-    console.log('File(s) in drop zone')
     e.preventDefault();
 }
 
 export const dropHandler = (e: React.DragEvent<HTMLDivElement>, t: File[] | null): File[] | null => {
-    console.log('File(s) dropped');
     e.preventDefault()
     const data = e.dataTransfer?.files;
     // console.log(data)
