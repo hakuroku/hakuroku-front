@@ -10,3 +10,4 @@ export interface ActiveState {
     setSeriesModal: (b: boolean) => void;
     setSeriesSelect: (b: boolean) => void;
 }
+

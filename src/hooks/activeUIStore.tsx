@@ -1,6 +1,6 @@
 import { create } from 'zustand'
-import { Counter } from './interface/activeUI'
-import { ActiveState } from './interface/activeUI'
+import { Counter, ActiveState} from './interface/activeUI'
+
 
 export const TopCount = create<Counter>((set) => ({
     count: 0,
@@ -14,3 +14,5 @@ export const useActive = create<ActiveState>((set) => ({
     seriesSelect: false,
     setSeriesSelect: (b) => set((preSelect) => ({ seriesSelect: b }))
 }))
+
+

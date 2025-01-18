@@ -13,10 +13,10 @@ export default {
     },
     extend: {
       animation: {
-        "fade-out": "fade-out 2s ease   both"
+        "fadeIn": "fadeIn 2s ease both"
       },
       keyframes: {
-        "fade-out": {
+        "fadeIn": {
           "0%": {opacity: "0"},
             to: {opacity: "1"},
         }
