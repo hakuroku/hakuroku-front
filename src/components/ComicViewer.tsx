@@ -1,14 +1,15 @@
 import { useState } from "react"
 
 interface ComicViewerProps {
-    pages: string[]
+    episode: { pages: string[] }
 }
 
-export const ComicViewer: React.FC<ComicViewerProps> = ({pages}) => {
+export const ComicViewer: React.FC<ComicViewerProps> = ({episode}) => {
     const [currentPage, setCurrentPage] = useState(0);
 
+    console.log(episode)
     const goToNextPage = () => {
-        if (currentPage < pages.length - 1) {
+        if (currentPage < episode.pages.length - 1) {
             setCurrentPage(currentPage + 2);
         }
     };
@@ -19,19 +20,19 @@ export const ComicViewer: React.FC<ComicViewerProps> = ({pages}) => {
         }
     }
 
-    const pagesLength = pages.length;
+    const pagesLength = episode.pages.length;
     const progressPercentage = Math.min((currentPage/pagesLength) * 100, 100);
 
 
-    console.log(progressPercentage)
+    console.log(episode.pages[currentPage])
     return (
         <div>
             <div className="relative bg-black">
                 <div className="flex justify-center h-screen ">
                     <div></div>
-                    {currentPage > pagesLength - 1 ? null : <img src={pages[currentPage]} alt={`Page ${currentPage - 1}`} />}
+                    {currentPage > pagesLength - 1 ? null : <img src={episode.pages[currentPage]} alt={`Page ${currentPage - 1}`} />}
                     
-                    {currentPage === 0 ? null : <img src={pages[currentPage -1]} alt={`Page ${currentPage}`}/>}
+                    {currentPage === 0 ? null : <img src={episode.pages[currentPage - 1]} alt={`Page ${currentPage}`}/>}
                     
                 </div>
                 <div className="flex justify-around border-2 border-gray-100 ">
@@ -49,7 +50,7 @@ export const ComicViewer: React.FC<ComicViewerProps> = ({pages}) => {
                 </div>
                 
                 <div className="w-fit">
-                    {(currentPage + 1) > pages.length ?
+                    {(currentPage + 1) > episode.pages.length ?
                         <p className="p-3 bg-gray-100 text-4xl ">&lt;{currentPage}/{pagesLength}&gt;</p> :
                         <p className="p-3 bg-gray-100 text-4xl ">&lt;{currentPage + 1}/{pagesLength}&gt;</p>
                     }

@@ -19,6 +19,7 @@ export interface GetSeriesDataStore {
     setSeries: (seriesList: {series_id: number, series_title: string}[] | undefined) => void
 }
 
-export interface getEpisode {
-    pageURL: Blob[];
+export interface GetEpisode {
+    episode: { pages: string[] },
+    setEpisode: (episodeData: { pages: string[] } | undefined)  => void;
 }
