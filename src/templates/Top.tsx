@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 // import { TopImgsView } from "../components/TopImgsView";
 import { TopCount } from "../hooks/activeUIStore";
-import { TopIconList } from "../components/TopIconList";
+import TopIconList from "../components/TopIconList";
 import { temporaryIconItem } from "../hooks/interface/temporaryImgData";
 
 export const Top = () => {
 
     const {count, setCount} = TopCount();
-    const [fadeInKey, setFadeInKey] = useState(false);
+    const [fadeInKey, setFadeInKey] = useState(0);
 // -------------------------データ（仮）---------------------
 
     const selectIcon: temporaryIconItem[] = [
@@ -56,14 +56,13 @@ export const Top = () => {
 
 useEffect(() => {
     const interval = setInterval(plusCount, 6000);
-    setFadeInKey(false);
-
+    setFadeInKey(prev => prev + 1);
     return () => clearInterval(interval)
 }, [count])
 
     return (
         <div>
-            <div className="h-screen relative bg-cover bg-center animate-fadeIn" style={{ 
+            <div key={fadeInKey} className="h-screen relative bg-cover bg-center animate-fadeIn" style={{ 
                 backgroundImage: `url(${selectIcon[count].topImg})`,
                 
             
@@ -80,11 +79,10 @@ useEffect(() => {
                     </div>
                     <img src="./images/allow-right.svg" className="w-10 px-2 py-8 bg-main_C hover:bg-main_C/75" onClick={() => {plusCount()}} />
                 </div> */}
-                <div className="flex justify-right gap-20 absolute bottom-20 right-20">
-                    {selectIcon.map((i, index) => <TopIconList {...i} key={index} id={index} iconImg={i.iconImg} count={count}/>)}
-                </div>
+                
                 </div>
             </div>
+            <TopIconList selectIcon={selectIcon}/>
         </div>
     )
 }
