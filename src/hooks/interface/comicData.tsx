@@ -1,6 +1,7 @@
 export interface PostDataStore {
     comic_content: File[] | null;
     comic_title: string;
+    comic_caption: string;
     series_id: number | null;
     author_name: string;
     series_title: string;
@@ -8,6 +9,7 @@ export interface PostDataStore {
 
     setComicContent: (contentList: File[] | null) => void;
     setComicTitle: (comicTitle: string) => void;
+    setComicCaption: (comicCaption: string) => void;
     setSeriesId: (seriesId: number) => void;
     setAuthorName: (authorName: string) => void;
     setSeriesTitle: (seriesTitle: string) => void;

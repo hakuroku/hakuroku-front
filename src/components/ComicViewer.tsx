@@ -23,13 +23,13 @@ export const ComicViewer: React.FC<ComicViewerProps> = ({episode}) => {
     const pagesLength = episode.pages.length;
     const progressPercentage = Math.min((currentPage/pagesLength) * 100, 100);
 
-
+    console.log(pagesLength)
     console.log(episode.pages[currentPage])
     return (
         <div>
             <div className="relative bg-black">
                 <div className="flex justify-center h-screen ">
-                    <div></div>
+                    
                     {currentPage > pagesLength - 1 ? null : <img src={episode.pages[currentPage]} alt={`Page ${currentPage - 1}`} />}
                     
                     {currentPage === 0 ? null : <img src={episode.pages[currentPage - 1]} alt={`Page ${currentPage}`}/>}

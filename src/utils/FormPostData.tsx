@@ -6,12 +6,14 @@ import { useEffect } from 'react';
 import { ButtonSeriesSelect } from '../components/BottonSeriesSelect';
 import { ModalSeriesForm } from '../components/ModalSeriesForm';
 import { getData } from './getData';
+import { TextareaComicUpload } from '../components/textareaComicUpload';
 
 export const FormPostData = () => {
-    const { comic_content, comic_title, series_id, author_name, setComicTitle, setAuthorName } = usePostData();
+    const { comic_content, comic_title, comic_caption, series_id, author_name, setComicTitle, setComicCaption, setAuthorName } = usePostData();
     const { setSeries } = useSeriesGetData();
 
     console.log(comic_content);
+    console.log(comic_caption)
     console.log(series_id);
     console.log(comic_title);
     console.log(author_name);
@@ -27,7 +29,8 @@ export const FormPostData = () => {
                 });
             }
 
-            formData.append('comic_title', comic_title,);
+            formData.append('comic_title', comic_title);
+            formData.append('comic_caption', comic_caption);
             if (series_id !== null) {
                 formData.append('series_id', series_id.toString())
             }
@@ -69,8 +72,9 @@ export const FormPostData = () => {
                              
                             <ComicDropZone />
 
-                            <FormComicUpload setComicTitle={setComicTitle} item={'作品名：'}/>
-                            <FormComicUpload setComicTitle={setAuthorName} item={'著者名：'}/>
+                            <FormComicUpload setState={setComicTitle} item={'作品名：'}/>
+                            <TextareaComicUpload setState={setComicCaption} item={'キャプション：'}/>
+                            <FormComicUpload setState={setAuthorName} item={'著者名：'}/>
         
                             <div className="flex justify-center mb-10 mx-auto">
                                 <p className="text-white"><span>シリーズ：</span></p>

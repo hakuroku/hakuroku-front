@@ -4,6 +4,7 @@ import { PostDataStore, GetSeriesDataStore, GetEpisode} from "./interface/comicD
 export const usePostData = create<PostDataStore>((set)=> ({
     comic_content: null,
     comic_title: '',
+    comic_caption: '',
     series_id: null,
     author_name: '',
     series_title: '',
@@ -11,6 +12,7 @@ export const usePostData = create<PostDataStore>((set)=> ({
 
     setComicContent: (contentList) => set({ comic_content: contentList }),
     setComicTitle: (comicTitle) => set({ comic_title: comicTitle }),
+    setComicCaption: (comicCaption) => set({ comic_caption: comicCaption}),
     setSeriesId: (seriesId) => set({ series_id: seriesId }),
     setAuthorName: (authorName) => set({ author_name: authorName }),
     setSeriesTitle: (seriesTitle) => set({ series_title: seriesTitle }),

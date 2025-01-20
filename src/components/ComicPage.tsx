@@ -24,7 +24,7 @@ export const ComicPage = () => {
 // ]
 
 useEffect(() => {
-    getData<{ pages: string[] } | undefined >('I wish')
+    getData<{ pages: string[] } | undefined >('episode/I_wish')
     .then((data) => setEpisode(data))
     .catch((error) => console.error(error))
 }, [])
