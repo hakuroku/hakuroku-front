@@ -13,7 +13,7 @@ export default {
     },
     extend: {
       animation: {
-        "fadeIn": "fadeIn 2s ease both"
+        "fadeIn": "fadeIn 3s ease both"
       },
       keyframes: {
         "fadeIn": {

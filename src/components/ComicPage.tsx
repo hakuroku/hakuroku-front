@@ -24,7 +24,6 @@ export const ComicPage = () => {
 // ]
 
 useEffect(() => {
-
     getData<{ pages: string[] } | undefined >('I wish')
     .then((data) => setEpisode(data))
     .catch((error) => console.error(error))
@@ -33,7 +32,6 @@ useEffect(() => {
 console.log(`episode:${episode}`)
     return (
         <div>
-            
             <ComicViewer episode={episode} />
             <Series />
         </div>
