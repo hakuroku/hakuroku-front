@@ -10,8 +10,8 @@ export const ModalSeriesForm = () => {
             <div>
                 <div className="bg-white w-[440px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left">
                     <FormSeriesCreate/>
-                    <div className="w-fit m-auto bg-accent_C hover:bg-accent2_C rounded-lg">
-                        <button className="py-2 px-20 text-white" onClick={() => { setSeriesModal(false) }}>キャンセルする</button>
+                    <div className="w-[240px] text-center m-auto bg-accent_C hover:bg-accent2_C hover:cursor-pointer rounded-lg" onClick={() => { setSeriesModal(false) }}>
+                        <div className="py-2 text-white" >キャンセルする</div>
                     </div>
 
                 </div>

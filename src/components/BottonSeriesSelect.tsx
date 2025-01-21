@@ -11,7 +11,7 @@ export const ButtonSeriesSelect = () => {
 
     if (series === undefined || series.length ===  0) {
         return (
-            <div className="w-2/3 h-fit bg-accent2_C hover:bg-accent_C rounded-md" onClick={() => { setSeriesModal(true) }}>
+            <div className="w-2/3 h-fit bg-accent2_C hover:bg-accent_C hover:cursor-pointer rounded-md" onClick={() => { setSeriesModal(true) }}>
                 <div className="py-1 px-8 text-white">シリーズを作成する</div>
             </div>
         )

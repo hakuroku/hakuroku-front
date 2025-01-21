@@ -48,9 +48,9 @@ export const FormSeriesCreate  = () => {
             <p className="mb-4"><span className="inline-block my-2 font-serif">あらすじ</span><br />
             <textarea name="series_summary" className="resize-none h-40 w-full bg-gray-100 m-auto outline-none px-2 py-1" placeholder="シリーズの概要" onChange={(i) => { setSeriesCaption(i.target.value) }}></textarea></p>
 
-            <div className="w-fit mx-auto mb-4 bg-accent2_C hover:bg-accent_C rounded-lg">
-                <button type="submit" className="py-2 px-20 text-white">作成する</button>
-            </div>
+            
+            <button type="submit" className="w-[240px] block mx-auto mb-4 bg-accent2_C hover:bg-accent_C rounded-lg py-2 text-white">作成する</button>
+            
 
         </form>
     )
