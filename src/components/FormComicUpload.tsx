@@ -1,10 +1,14 @@
 interface setState {
     setState: (s: string) => void;
     item: string;
+    text: string
 }
 
-export const FormComicUpload: React.FC<setState> = ({setState, item}) => {
+export const FormComicUpload: React.FC<setState> = ({setState, item, text}) => {
     return(
-        <p><label ><span className="text-white">{item}</span><input type="text" name="comic_title" className="mb-3 p-1 h-6 w-60 outline-none" onChange={(e) => setState(e.target.value)} /></label><br /></p>
+        <div className="flex justify-end items-center mb-3">
+            <label ><span className="font-serif w-1/3 text-right pr-2">{item}</span></label>
+            <input type="text" name="comic_title" placeholder={text} className=" py-1 px-2 h-8 w-2/3 outline-none bg-gray-100 border-b-2 rounded-sm" onChange={(e) => setState(e.target.value)} /><br />
+        </div>
     )
 }

@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import { Header } from "./templates/Header";
 import { Top } from "./templates/Top";
 import { Footer } from "./templates/Footer";
 import { PostComic } from "./templates/PostComic";
-import { ComicPage } from "./components/ComicPage";
+import { Episode } from "./templates/Episode";
 import { DashBoard } from "./templates/DashBoard";
+import { NotFoundPage } from "./templates/NotFoundPage";
 
 export const App = () => {
   return (
@@ -12,10 +13,11 @@ export const App = () => {
       <BrowserRouter>
         <Header></Header>
         <Routes>
-          <Route path='/' element={<Top/>} />
-          <Route path='/PostComic' element={<PostComic/> }/>
-          <Route path='/ComicPage' element={<ComicPage/>}/>
-          <Route path='/DashBoard' element={<DashBoard/>}/>
+          <Route path='/' element={<Top />} />
+          <Route path='/postComic' element={<PostComic />} />
+          <Route path='/episode/:url' element={<Episode />} />
+          <Route path='/dashBoard' element={<DashBoard />} />
+          <Route path='*' element={<NotFoundPage/>} />
         </Routes>
         <Footer></Footer>
       </BrowserRouter>
