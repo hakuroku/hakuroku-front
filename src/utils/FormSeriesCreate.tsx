@@ -40,9 +40,13 @@ export const FormSeriesCreate  = () => {
     return (
         <form onSubmit={handleSubmit} encType="multipart/form-data">
 
-            <p className="border-b py-4"><span className="mr-4">シリーズ名</span><input type="text" name="series_name" className="bg-gray-100 w-60 p-1 outline-none" placeholder="シリーズの名前" onChange={(i) => setSeriesTitle(i.target.value)} /></p>
-
-            <p className="mb-4"><span className="inline-block my-2">あらすじ</span><br /><textarea name="series_summary" className="resize-none h-40 w-80 bg-gray-100 m-auto outline-none p-1" placeholder="シリーズの概要" onChange={(i) => { setSeriesCaption(i.target.value) }}></textarea></p>
+            <div className="flex border-b items-center pb-2">
+                <div className=" py-4 w-1/3"><span className="mr-4 font-serif">シリーズ名</span>
+                </div>
+                <input type="text" name="series_name" className="bg-gray-100 w-full h-8 py-1 px-2 outline-none" placeholder="シリーズの名前" onChange={(i) => setSeriesTitle(i.target.value)} />
+            </div>
+            <p className="mb-4"><span className="inline-block my-2 font-serif">あらすじ</span><br />
+            <textarea name="series_summary" className="resize-none h-40 w-full bg-gray-100 m-auto outline-none px-2 py-1" placeholder="シリーズの概要" onChange={(i) => { setSeriesCaption(i.target.value) }}></textarea></p>
 
             <div className="w-fit mx-auto mb-4 bg-accent2_C hover:bg-accent_C rounded-lg">
                 <button type="submit" className="py-2 px-20 text-white">作成する</button>
