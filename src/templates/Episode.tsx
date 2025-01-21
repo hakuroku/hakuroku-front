@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useEpisodeData } from "../hooks/dataStore";
 import { ComicViewer } from "../components/ComicViewer";
 import { Series } from "./Series";
-import { getData } from "../utils/getData";
+// import { getData } from "../utils/getData";
 
 export const Episode = () => {
     const { url } = useParams();

@@ -7,6 +7,7 @@ export const ButtonSeriesSelect = () => {
     const { series_title } = usePostData();
     const { setSeriesModal, seriesSelect, setSeriesSelect }= useActive()
 
+    console.log(`series:${series}`)
     console.log(series)
 
     if (series === undefined || series.length ===  0) {
