@@ -27,14 +27,20 @@ export const FormPostData = () => {
                 Array.from(comic_content).forEach((file)=> {
                     formData.append('comic_content[]', file);
                 });
+            } 
+            if (comic_title) {
+                formData.append('comic_title', comic_title);
             }
-
-            formData.append('comic_title', comic_title);
-            formData.append('comic_caption', comic_caption);
+            if (comic_caption) {
+                formData.append('comic_caption', comic_caption);
+            }
             if (series_id !== null) {
                 formData.append('series_id', series_id.toString())
             }
-            formData.append('author_name', author_name);
+            if (author_name) {
+                formData.append('author_name', author_name);
+            }
+            
 
             for (let pair of formData.entries()) {
                 console.log(pair[0], pair[1]); // ここで送信するデータが正しく含まれているか確認

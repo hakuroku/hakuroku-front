@@ -67,7 +67,7 @@ useEffect(() => {
                 <div className="w-full h-screen bg-black/40 ">
                 </div>
             </div>
-            <TopIconList selectIcon={selectIcon}/>
+            <TopIconList selectIcon={selectIcon} />
         </div>
     )
 }
