@@ -8,8 +8,8 @@ export const NotFoundPage = () => {
            <p>お探しのページは見つかりませんでした。</p>
            <p>以下のリンクから改めて作品をお探しください。</p>
         </div>
-        <div className="flex justify-center items-center">
-           <Link to='/' className="text-white hover:text-accent_C p-2 block text-xs">Top画面へ戻る</Link>
+         <div className="flex justify-center items-center text-white hover:text-accent_C">
+           <Link to='/' className="p-2 block text-xs">Top画面へ戻る</Link>
             <FontAwesomeIcon icon={faArrowRightFromBracket} />
         </div>
     </div>

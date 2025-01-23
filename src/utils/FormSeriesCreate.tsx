@@ -23,7 +23,7 @@ export const FormSeriesCreate  = () => {
                 }
             });
             console.log('Response:', response.data);
-            await getData<{series_id: number, series_title: string}[]>('getSeries')
+            await getData<{id: number, series_title: string}[]>('getSeries')
             .then((data) => setSeries(data))
             .catch((error) => console.error(error))
             setSeriesModal(false)

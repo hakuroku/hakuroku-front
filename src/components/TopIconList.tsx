@@ -13,11 +13,8 @@ const TopIconList: React.FC<topIconImg> = ({ selectIcon }) => {
   
     const {count, setCount} = TopCount();
 
-    // const link = "/ComicPage/" + id
-
-
     return (
-            <div className="flex justify-right gap-20 absolute bottom-[-5rem] right-20">
+            <div className="flex flex-row-reverse justify-right gap-20 absolute bottom-[-5rem] right-20">
                     {selectIcon.map((i, index) => (
                             <div key={i.iconImg} className="border-2 border- w-20 h-80 overflow-hidden shadow-xl" id="comic-icon_frame" style={{ borderColor: count === index ? '#ffb433' : 'black', boxShadow: count === index ? '0 0 8px #ffb433' : 'none' }}>
                             <Link to="/episode">

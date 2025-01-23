@@ -17,11 +17,16 @@ export interface PostDataStore {
 }
 
 export interface GetSeriesDataStore {
-    series: {series_id: number, series_title: string}[];
-    setSeries: (seriesList: {series_id: number, series_title: string}[] | undefined) => void
+    series: {id: number, series_title: string}[];
+    setSeries: (seriesList: {id: number, series_title: string}[] | undefined) => void
 }
 
 export interface GetEpisode {
     episode: { pages: string[] },
     setEpisode: (episodeData: { pages: string[] } | undefined)  => void;
+}
+
+export interface getTopInfo {
+   topInfo: {url: string }[],
+    setTopInfo: (topData: { url: string }[] | undefined) => void 
 }

@@ -60,7 +60,7 @@ export const FormPostData = () => {
     
     // -------------------------データ取得---------------------
     useEffect(() => {
-        getData<{series_id: number, series_title: string}[]>('getSeries')
+        getData<{id: number, series_title: string}[]>('getSeries')
         .then((data) => setSeries(data))
         .catch((error) => console.error(error))
     }, [])

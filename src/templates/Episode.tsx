@@ -12,7 +12,7 @@ export const Episode = () => {
 
 
     useEffect(() => {
-        getData<{ pages: string[] } | undefined>(`episode/884ae67e-932f-491b-8434-cae395d60695`)
+        getData<{ pages: string[] } | undefined>(`episode/${url}`)
             .then((data) => setEpisode(data))
             .catch((error) => console.error(error))
     }, [])
