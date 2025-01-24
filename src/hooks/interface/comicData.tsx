@@ -27,6 +27,6 @@ export interface GetEpisode {
 }
 
 export interface getTopInfo {
-   topInfo: {url: string }[],
-    setTopInfo: (topData: { url: string }[] | undefined) => void 
+    topInfo: {titleSet: { title: string }[] , urls: {url: string }[]}  | undefined ,
+    setTopInfo: (topData:  {titleSet: { title: string }[] , urls: {url: string }[]} | undefined ) => void 
 }

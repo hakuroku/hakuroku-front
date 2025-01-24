@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { TopCount } from "../hooks/activeUIStore";
-// import { useTopInfo } from "../hooks/dataStore"; 
+import { useTopInfo } from "../hooks/dataStore"; 
 import TopIconList from "../components/TopIconList";
 import { temporaryIconItem } from "../hooks/interface/temporaryImgData";
+import { getData } from "../utils/getData";
 
 export const Top = () => {
-    // const {topInfo, setTopInfo} = useTopInfo()
+    const {topInfo, setTopInfo} = useTopInfo()
     const {count, setCount} = TopCount();
     const [fadeInKey, setFadeInKey] = useState(0);
 // -------------------------データ（仮）---------------------
@@ -59,6 +60,12 @@ useEffect(() => {
     return () => clearInterval(interval)
 }, [count])
 
+useEffect(() => {
+    getData<{titleSet: { title: string }[] , urls: {url: string }[] } | undefined>('getTopView')
+    .then((data)=> setTopInfo(data))
+    .catch((error) => console.error(error))
+},[])
+console.log(topInfo)
     return (
         <div>
             <div key={fadeInKey} className="h-screen relative bg-cover bg-center animate-fadeIn" style={{ 

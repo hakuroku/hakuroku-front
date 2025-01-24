@@ -30,6 +30,6 @@ export const useEpisodeData = create<GetEpisode>((set) => ({
 }))
 
 export const useTopInfo = create<getTopInfo>((set) => ({
-    topInfo: [],
+    topInfo: {titleSet: [], urls:[]},
     setTopInfo: ( topData ) => set({ topInfo: topData})
 }))
