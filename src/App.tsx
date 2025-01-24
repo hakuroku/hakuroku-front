@@ -16,6 +16,7 @@ export const App = () => {
           <Route path='/' element={<Top />} />
           <Route path='/postComic' element={<PostComic />} />
           <Route path='/episode/:url' element={<Episode />} />
+          <Route path='/dashboard' element={<DashBoard/>} />
           <Route path='/dashBoard' element={<DashBoard />} />
           <Route path='*' element={<NotFoundPage/>} />
         </Routes>

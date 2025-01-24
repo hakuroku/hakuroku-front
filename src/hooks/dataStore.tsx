@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { PostDataStore, GetSeriesDataStore, GetEpisode, getTopInfo} from "./interface/comicData";
+import { PostDataStore, GetSeriesDataStore, GetEpisode, getTopInfo, getIcon} from "./interface/comicData";
 
 export const usePostData = create<PostDataStore>((set)=> ({
     comic_content: null,
@@ -32,4 +32,9 @@ export const useEpisodeData = create<GetEpisode>((set) => ({
 export const useTopInfo = create<getTopInfo>((set) => ({
     topInfo: {titleSet: [], urls:[]},
     setTopInfo: ( topData ) => set({ topInfo: topData})
+}))
+
+export const useGetIcon = create<getIcon>((set) => ({
+    seriesIcon: [],
+    setSeriesIcon: ( getData ) => set( { seriesIcon: getData})
 }))

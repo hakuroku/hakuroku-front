@@ -30,3 +30,8 @@ export interface getTopInfo {
     topInfo: {titleSet: { title: string }[] , urls: {url: string }[]}  | undefined ,
     setTopInfo: (topData:  {titleSet: { title: string }[] , urls: {url: string }[]} | undefined ) => void 
 }
+
+export interface getIcon { 
+    seriesIcon: { id: number; title: string; }[];  
+    setSeriesIcon: (getData: { id: number; title: string; }[] | undefined) => void;
+    }
