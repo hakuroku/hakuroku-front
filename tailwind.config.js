@@ -29,7 +29,15 @@ export default {
           }   
         }
       },
-      plugins: [],
+      plugins: [
+        function ({ addUtilities }) {
+          addUtilities({
+            '.text-outline': {
+              textShadow: '2px 2px 4px rgba(255, 255, 255, 0.8), -2px -2px 4px rgba(255, 255, 255, 0.8)',
+            },
+          });
+        },
+      ],
     }
   
 

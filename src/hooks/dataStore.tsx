@@ -13,7 +13,7 @@ export const usePostData = create<PostDataStore>((set)=> ({
     setComicContent: (contentList) => set({ comic_content: contentList }),
     setComicTitle: (comicTitle) => set({ comic_title: comicTitle }),
     setComicCaption: (comicCaption) => set({ comic_caption: comicCaption}),
-    setSeriesId: (seriesId) => set({ series_id: seriesId }),
+    setSeriesId: (seriesId) => set({ series_id: seriesId } ),
     setAuthorName: (authorName) => set({ author_name: authorName }),
     setSeriesTitle: (seriesTitle) => set({ series_title: seriesTitle }),
     setSeriesCaption: (seriesCaption) => set({ series_caption: seriesCaption })

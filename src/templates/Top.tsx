@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { TopCount } from "../hooks/activeUIStore";
 import { useTopInfo } from "../hooks/dataStore"; 
 import TopIconList from "../components/TopIconList";
+import { TopSeriesTitle } from "../components/TopSeriesTitle";
 import { temporaryIconItem } from "../hooks/interface/temporaryImgData";
 import { getData } from "../utils/getData";
 
@@ -14,23 +15,33 @@ export const Top = () => {
     const selectIcon: temporaryIconItem[] = [
         {
             topImg: './images/sample1.jpg',
-            iconImg: './images/icon1.jpg'
+            iconImg: './images/icon1.jpg',
+            title: '作品名1',
+            url: 'jhfffjsnfjvvjsdkfjsbf'
         },
         {
             topImg: './images/sample2.jpg',
-            iconImg: './images/icon2.jpg'
+            iconImg: './images/icon2.jpg',
+            title: '作品名2',
+            url: 'fksfnokfknlkndfsf'
         },
         {
             topImg: './images/sample3.jpg',
-            iconImg: './images/icon3.jpg'
+            iconImg: './images/icon3.jpg',
+            title: '作品名3',
+            url: 'knskdhklsmfasnmljvjks'
         },
         {
             topImg: './images/sample4.jpg',
-            iconImg: './images/icon4.jpg'
+            iconImg: './images/icon4.jpg',
+            title: '作品名4',
+            url: 'jfjksjfksfkskssknf'
         },
         {
             topImg: './images/sample5.jpg',
-            iconImg: './images/icon5.jpg'
+            iconImg: './images/icon5.jpg',
+            title: '作品名5',
+            url: 'oksnfkndskfnsksdkfn'
         }
     ];
 
@@ -70,7 +81,8 @@ console.log(topInfo)
         <div>
             <div key={fadeInKey} className="h-screen relative bg-cover bg-center animate-fadeIn" style={{ 
                 backgroundImage: `url(${selectIcon[count].topImg})`,
-            }}>
+                }}>
+                <TopSeriesTitle selectIcon={selectIcon}/>
                 <div className="w-full h-screen bg-black/40 ">
                 </div>
             </div>

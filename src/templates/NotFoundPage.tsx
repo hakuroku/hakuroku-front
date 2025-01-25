@@ -12,6 +12,10 @@ export const NotFoundPage = () => {
            <Link to='/' className="p-2 block text-xs">Top画面へ戻る</Link>
             <FontAwesomeIcon icon={faArrowRightFromBracket} />
         </div>
+        <div className="flex justify-between px-8">
+            <img src="./images/デジカル君1.png" alt="" />
+            <img src="./images/デジカル君1.png" alt="" />
+        </div>
     </div>
    )
 }

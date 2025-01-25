@@ -9,7 +9,7 @@ import { getData } from './getData';
 import { TextareaComicUpload } from '../components/TextareaComicUpload';
 
 export const FormPostData = () => {
-    const { comic_content, comic_title, comic_caption, series_id, author_name, setComicTitle, setComicCaption, setAuthorName } = usePostData();
+    const { comic_content, comic_title, comic_caption, series_id, author_name, setComicContent, setComicTitle, setComicCaption, setSeriesId, setAuthorName } = usePostData();
     const { setSeries } = useSeriesGetData();
 
     console.log(comic_content);
@@ -41,7 +41,6 @@ export const FormPostData = () => {
                 formData.append('author_name', author_name);
             }
             
-
             for (let pair of formData.entries()) {
                 console.log(pair[0], pair[1]); // ここで送信するデータが正しく含まれているか確認
             }
@@ -53,6 +52,11 @@ export const FormPostData = () => {
 
             alert('投稿が完了しました。')
             console.log('Response:', response.data)
+            setComicContent(null)
+            setComicTitle('')
+            setComicCaption('')
+            setSeriesId(null)
+            setAuthorName('')
         } catch (error) {
             console.error('Error')
         }
