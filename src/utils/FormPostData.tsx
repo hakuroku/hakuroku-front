@@ -47,7 +47,9 @@ export const FormPostData = () => {
 
             const response = await axios.post(url, formData, {
                 headers: {
-                }
+                },
+                maxContentLength: Infinity,
+                maxBodyLength: Infinity, 
             });
 
             alert('投稿が完了しました。')
