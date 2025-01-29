@@ -22,21 +22,25 @@ export interface GetSeriesDataStore {
 }
 
 export interface GetEpisode {
-    episode: { pages: string[] },
-    setEpisode: (episodeData: { pages: string[] } | undefined)  => void;
+    episode: { 
+        content: { pages: string[] }, 
+        comicInfo: {comic_id: number, comic_title: string, comic_thumnail: string, comic_url: string }[]
+    } | undefined,
+    setEpisode: (episodeData: { content: { pages: string[] }, comicInfo: { comic_id: number, comic_title: string, comic_thumnail: string, comic_url: string }[] } | undefined)  => void;
 }
 
 export interface getTopInfo {
-    topInfo: {titleSet: { title: string }[] , urls: {url: string }[]}  | undefined ,
+    topInfo: {
+        titleSet: { title: string }[] , 
+        urls: {url: string }[]
+    }  | undefined ,
     setTopInfo: (topData:  {titleSet: { title: string }[] , urls: {url: string }[]} | undefined ) => void 
 }
 
 export interface getIcon { 
-    seriesIcon: { id: number; title: string; }[] | undefined;  
+    seriesIcon: {
+        id: number; 
+        title: string; 
+    }[] | undefined;  
     setSeriesIcon: (getData: { id: number; title: string; }[] | undefined) => void;
-}
-
-    export interface getComicItem {
-    comicItems: { comic_id: number, comic_title: string, comic_thumnail: string, comic_url: string}[] | undefined;
-    setComicItems: (getData: { comic_id: number, comic_title: string, comic_thumnail: string, comic_url: string }[] | undefined) => void;
 }

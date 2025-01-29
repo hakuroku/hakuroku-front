@@ -9,10 +9,10 @@ export const TopCount = create<Counter>((set) => ({
 
 export const useActive = create<ActiveState>((set) => ({
     seriesModal: false,
-    setSeriesModal: (b) => set((preModal) => ({ seriesModal: b })),
+    setSeriesModal: (b) => set(() => ({ seriesModal: b })),
 
     seriesSelect: false,
-    setSeriesSelect: (b) => set((preSelect) => ({ seriesSelect: b }))
+    setSeriesSelect: (b) => set(() => ({ seriesSelect: b }))
 }))
 
 

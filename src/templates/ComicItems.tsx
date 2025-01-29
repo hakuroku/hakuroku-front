@@ -1,8 +1,3 @@
-import { useEffect } from "react";
-import { getData } from "../utils/getData";
-import { useGetComicItem } from "../hooks/dataStore"
-
-
 
 export const ComicsItems = () => {
         

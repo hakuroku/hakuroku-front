@@ -14,7 +14,7 @@ interface topIconImg {
 const TopIconList: React.FC<topIconImg> = ({ selectIcon }) => {
   
     const {count, setCount} = TopCount();
-    const {topInfo, setTopInfo} = useTopInfo();
+    const {topInfo} = useTopInfo();
     return (
             <div className="flex flex-row-reverse justify-right gap-20 absolute bottom-[-5rem] right-20">
                     {selectIcon.map((i, index) => (
