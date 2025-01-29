@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 
 export const Header = () => {
     return (
@@ -10,13 +10,13 @@ export const Header = () => {
 
                 <div className="flex items-center">
                     <ul className='flex items-center gap-4 pr-8'>
-                        {/* <Link to='/DashBoard'><li className=" hover:text-accent2_C">ダッシュボード</li></Link> */}
+                        <Link to='/DashBoard'><li className=" hover:text-accent2_C">ダッシュボード</li></Link>
                         <Link to='/PostComic'><li className=" hover:text-accent2_C">作品投稿</li></Link>
                     </ul>
-                    {/* <input type="search" className="border-2 outline-none px-1" />
+                    <input type="search" className="border-2 outline-none px-1" />
                     <button className="px-1 border-2 bg-white">
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
-                    </button> */}
+                    </button>
                 </div>
             </div>
         </div>
