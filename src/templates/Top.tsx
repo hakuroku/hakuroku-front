@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { TopCount } from "../hooks/activeUIStore";
-import { useTopInfo } from "../hooks/dataStore"; 
+import { useTopInfo } from "../hooks/useGetData";
 import TopIconList from "../components/TopIconList";
 import { TopSeriesTitle } from "../components/TopSeriesTitle";
 import { temporaryIconItem } from "../hooks/interface/temporaryImgData";
 import { getData } from "../utils/getData";
+import { GetTopInfo } from "../types/stateGetData";
 
 export const Top = () => {
-    const {topInfo, setTopInfo} = useTopInfo()
-    const {count, setCount} = TopCount();
+    const { topInfo, setTopInfo } = useTopInfo()
+    const { count, setCount } = TopCount();
     const [fadeInKey, setFadeInKey] = useState(0);
-// -------------------------データ（仮）---------------------
+    // -------------------------データ（仮）---------------------
 
     const selectIcon: temporaryIconItem[] = [
         {
@@ -45,8 +46,8 @@ export const Top = () => {
         }
     ];
 
-// -------------------------clickSlider---------------------
-    const imgsLength = selectIcon.length -1
+    // -------------------------clickSlider---------------------
+    const imgsLength = selectIcon.length - 1
     // const minusCount = () => {
     //     if (count > 0) {
     //         setCount(count - 1)
@@ -63,26 +64,26 @@ export const Top = () => {
         }
     }
 
-// -------------------------autoSlider---------------------
+    // -------------------------autoSlider---------------------
 
-useEffect(() => {
-    const interval = setInterval(plusCount, 6000);
-    setFadeInKey(prev => prev + 1);
-    return () => clearInterval(interval)
-}, [count])
+    useEffect(() => {
+        const interval = setInterval(plusCount, 6000);
+        setFadeInKey(prev => prev + 1);
+        return () => clearInterval(interval)
+    }, [count])
 
-useEffect(() => {
-    getData<{titleSet: { title: string }[] , urls: {url: string }[] } | undefined>('getTopView')
-    .then((data)=> setTopInfo(data))
-    .catch((error) => console.error(error))
-},[])
-console.log(topInfo)
+    useEffect(() => {
+        getData<GetTopInfo>('getTopView')
+            .then((data) => setTopInfo(data))
+            .catch((error) => console.error(error))
+    }, [])
+    console.log(topInfo)
     return (
         <div>
-            <div key={fadeInKey} className="h-screen relative bg-cover bg-center animate-fadeIn" style={{ 
+            <div key={fadeInKey} className="h-screen relative bg-cover bg-center animate-fadeIn" style={{
                 backgroundImage: `url(${selectIcon[count].topImg})`,
-                }}>
-                <TopSeriesTitle selectIcon={selectIcon}/>
+            }}>
+                <TopSeriesTitle selectIcon={selectIcon} />
                 <div className="w-full h-screen bg-black/40 ">
                 </div>
             </div>
