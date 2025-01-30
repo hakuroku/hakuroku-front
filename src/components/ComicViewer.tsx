@@ -64,6 +64,4 @@ export const ComicViewer: React.FC<ComicViewerProps> = ({ episode }) => {
         <p>データの取得に失敗しました</p>
         </>
     )
-   
-    
 }

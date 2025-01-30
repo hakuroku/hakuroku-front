@@ -11,11 +11,13 @@ type GetEpisode = {
 } | void
 
 type GetTopInfo = {
-    seriesId: number[];
-    seriesTitles: { title: string }[];
-    seriesBgImgs: string[];
-    seriesTopIcons: string[];
-    topUrls: { url: string }[];
-} | void
+    seriesId: number;
+    seriesTitle: string;
+    seriesBgImg: string;
+    seriesTopIcon: string;
+    topUrl: { url: string };
+}[] | void
+
+
 
 export type {GetPostSeries, GetEpisode, GetTopInfo}
