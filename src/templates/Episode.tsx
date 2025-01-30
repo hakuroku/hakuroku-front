@@ -34,6 +34,7 @@ export const Episode = () => {
                 console.log()
             }
         }
+        getEpisodeData();
     }, [])
 
     console.log(episode)
