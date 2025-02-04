@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { usePostComic} from '../hooks/usePostData';
 import { useSeriesGetData } from '../hooks/useGetData';
@@ -12,6 +13,8 @@ import { getData } from './getData';
 export const FormPostData = () => {
     const { comic_content, comic_title, comic_caption, series_id, author_name, setComicContent, setComicTitle, setComicCaption, setSeriesId, setAuthorName } = usePostComic();
     const { setSeries } = useSeriesGetData();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     console.log(comic_content);
     console.log(comic_caption)
@@ -53,13 +56,8 @@ export const FormPostData = () => {
                 maxBodyLength: Infinity,
             });
 
-            alert('投稿が完了しました。')
             console.log('Response:', response.data)
-            setComicContent(null)
-            setComicTitle('')
-            setComicCaption('')
-            setSeriesId(null)
-            setAuthorName('')
+            navigate('/success')
         } catch (error) {
             console.error('Error')
         }
@@ -77,6 +75,14 @@ export const FormPostData = () => {
             .then((data) => setSeries(data))
             .catch((error) => console.error(error))
     }, [])
+
+    useEffect(() => {
+        setComicContent(null);
+        setComicTitle('');
+        setComicCaption('');
+        setSeriesId(null);
+        setAuthorName('');
+    }, [location])
 
 
     return (

@@ -1,23 +1,23 @@
 import {EpisodeContent, EpisodeInfo } from "./getData";
 
-type GetPostSeries = {
+type PostSeries = {
     id: number;
     series_title: string
 }[] | void;
 
-type GetEpisode = {
+type Episodes = {
     episodeContent: EpisodeContent,
     episodeInfo: EpisodeInfo
 } | void
 
-type GetTopInfo = {
+type TopInfos = {
     seriesId: number;
     seriesTitle: string;
     seriesBgImg: string;
     seriesTopIcon: string;
-    topUrl: { url: string };
+    topUrl: string ;
 }[] | void
 
 
 
-export type {GetPostSeries, GetEpisode, GetTopInfo}
+export type {PostSeries, Episodes, TopInfos}

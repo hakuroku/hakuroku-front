@@ -6,6 +6,7 @@ import { PostComic } from "./templates/PostComic";
 import { Episode } from "./templates/Episode";
 import { DashBoard } from "./templates/DashBoard";
 import { NotFoundPage } from "./templates/NotFoundPage";
+import { Success } from "./templates/Success";
 
 export const App = () => {
   return (
@@ -17,7 +18,7 @@ export const App = () => {
           <Route path='/postComic' element={<PostComic />} />
           <Route path='/episode/:url' element={<Episode />} />
           <Route path='/dashboard' element={<DashBoard/>} />
-          <Route path='/dashBoard' element={<DashBoard />} />
+          <Route path='/success' element={<Success />} />
           <Route path='*' element={<NotFoundPage/>} />
         </Routes>
         <Footer></Footer>
