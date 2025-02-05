@@ -1,14 +1,14 @@
-import {ComicContent, ComicTitle, ComicCaption, ComicId, AuthorName, SeriesTitle, SeriesCaption } from "../../types/statePostData";
+import {EpisodeContent, EpisodeTitle, EpisodeCaption, SeriesId, AuthorName, SeriesTitle, SeriesCaption } from "../../types/statePostData";
 
-export interface PostComicStore {
-    comic_content: ComicContent;
-    comic_title: ComicTitle;
-    comic_caption: ComicCaption;
-    series_id: ComicId;
+export interface PostEpisodeStore {
+    episode_content: EpisodeContent;
+    episode_title: EpisodeTitle;
+    episode_caption: EpisodeCaption;
+    series_id: SeriesId;
     author_name: AuthorName;
-    setComicContent: (contentList: File[] | null) => void;
-    setComicTitle: (comicTitle: string) => void;
-    setComicCaption: (comicCaption: string) => void;
+    setEpisodeContent: (episodeContentList: File[] | null) => void;
+    setEpisodeTitle: (episodeTitle: string) => void;
+    setEpisodeCaption: (episodeCaption: string) => void;
     setSeriesId: (seriesId: number | null) => void;
     setAuthorName: (authorName: string) => void;
 }

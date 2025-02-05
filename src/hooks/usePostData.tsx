@@ -1,15 +1,15 @@
 import { create } from "zustand";
-import { PostComicStore, PostSeriesStore} from "./interface/postDataStore";
+import { PostEpisodeStore, PostSeriesStore} from "./interface/postDataStore";
 
-export const usePostComic = create<PostComicStore>((set)=> ({
-    comic_content: null,
-    comic_title: '',
-    comic_caption: '',
+export const usePostComic = create<PostEpisodeStore>((set)=> ({
+    episode_content: null,
+    episode_title: '',
+    episode_caption: '',
     series_id: null,
     author_name: '',
-    setComicContent: (contentList) => set({ comic_content: contentList }),
-    setComicTitle: (comicTitle) => set({ comic_title: comicTitle }),
-    setComicCaption: (comicCaption) => set({ comic_caption: comicCaption}),
+    setEpisodeContent: (contentList) => set({ episode_content: contentList }),
+    setEpisodeTitle: (comicTitle) => set({ episode_title: comicTitle }),
+    setEpisodeCaption: (comicCaption) => set({ episode_caption: comicCaption}),
     setSeriesId: (seriesId) => set({ series_id: seriesId } ),
     setAuthorName: (authorName) => set({ author_name: authorName }),
 }))
