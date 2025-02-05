@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import { Header } from "./templates/Header";
 import { Top } from "./templates/Top";
 import { Footer } from "./templates/Footer";
-import { PostEpisode } from "./templates/PostEpisode";
+import { UploadEpisode } from "./templates/UploadEpisode";
 import { Episode } from "./templates/Episode";
 import { DashBoard } from "./templates/DashBoard";
 import { NotFound } from "./templates/NotFound";
@@ -15,7 +15,7 @@ export const App = () => {
         <Header></Header>
         <Routes>
           <Route path='/' element={<Top />} />
-          <Route path='/postComic' element={<PostEpisode />} />
+          <Route path='/upload/episode' element={<UploadEpisode />} />
           <Route path='/episode/:url' element={<Episode />} />
           <Route path='/dashboard' element={<DashBoard/>} />
           <Route path='/success' element={<Success />} />

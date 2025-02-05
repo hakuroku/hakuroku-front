@@ -73,7 +73,7 @@ export const Top = () => {
     }, [count])
 
     useEffect(() => {
-        getData<TopInfos>('getTopView')
+        getData<TopInfos>('get/top-info')
             .then((data) => setTopInfo(data))
             .catch((error) => console.error(error))
     }, [])

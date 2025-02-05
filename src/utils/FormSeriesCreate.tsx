@@ -13,7 +13,7 @@ export const FormSeriesCreate = () => {
     // -------------------------データ送信---------------------
     const postData = async () => {
         try {
-            const url = 'http://127.0.0.1:8000/api/series_create'
+            const url = 'http://127.0.0.1:8000/api/create/series'
             const data = {
                 series_title: series_title,
                 series_caption: series_caption

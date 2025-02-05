@@ -20,7 +20,7 @@ export const Episode = () => {
             try {
                 const [res1, res2] = await Promise.all([
                     getData<EpisodeContent>(`episode/${url}`),
-                    getData<EpisodeInfo>('getComicItems')
+                    getData<EpisodeInfo>('get/episode')
                 ]);
 
                 const episodeData = {
