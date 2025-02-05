@@ -5,7 +5,7 @@ import TopIconList from "../components/TopIconList";
 import { TopSeriesTitle } from "../components/TopSeriesTitle";
 import { temporaryIconItem } from "../hooks/interface/temporaryImgData";
 import { getData } from "../utils/getData";
-import { GetTopInfos } from "../types/stateGetData";
+import { TopInfos } from "../types/stateGetData";
 
 export const Top = () => {
     const { topInfo, setTopInfo } = useTopInfo()

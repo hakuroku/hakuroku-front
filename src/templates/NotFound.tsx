@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom" 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons"
-export const NotFoundPage = () => {
+export const NotFound = () => {
    return (
     <div className="text-white text-center h-[80vh]">
         <div className="pt-[20vh] mb-6">

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { usePostComic } from "../hooks/usePostData";
+import { usePostEpisode } from "../hooks/usePostData";
 import { dropHandler, dragOverHandler, addFiles } from "../utils/addFile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -9,14 +9,14 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 
 export const ComicDropZone = () => {
-    const { comic_content, setComicContent } = usePostComic();
+    const { episode_content, setEpisodeContent } = usePostEpisode();
     const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     const deleteFile = (index: number): File[] | null => {
-        if (comic_content) {
-            const newComicContent = [...comic_content]
-            newComicContent.splice(index, 1)
-            return newComicContent
+        if (episode_content) {
+            const newEpisodeContent = [...episode_content]
+            newEpisodeContent.splice(index, 1)
+            return newEpisodeContent
         } return null
 
     }
@@ -27,10 +27,10 @@ export const ComicDropZone = () => {
         }
     }
 
-    if (comic_content === null || comic_content?.length === 0) {
+    if (episode_content === null || episode_content?.length === 0) {
         return (
             <div>
-                <div className="border-2 border-white h-52 bg-white my-3" onDrop={(e) => setComicContent(dropHandler(e, comic_content))} onDragOver={(e) => dragOverHandler(e)}>
+                <div className="border-2 border-white h-52 bg-white my-3" onDrop={(e) => setEpisodeContent(dropHandler(e, episode_content))} onDragOver={(e) => dragOverHandler(e)}>
 
                     <div className="bg-accent_C hover:bg-accent2_C px-16 py-4 rounded-full text-white hover:text-gray-200 text-xl flex gap-2 items-center mx-auto mt-16 w-fit hover:cursor-pointer" onClick={handleButtonClick}>
                         <p>画像を追加</p>
@@ -38,19 +38,19 @@ export const ComicDropZone = () => {
                     </div>
                 </div>
 
-                <input type="file" ref={fileInputRef} name="comic_content[]" multiple accept=" .jpg, .pdf " className="mb-10 text-white hidden" id="comics-create_field" onChange={(e) => setComicContent(addFiles(e.target.files, comic_content))} /><br />
+                <input type="file" ref={fileInputRef} name="comic_content[]" multiple accept=" .jpg, .pdf " className="mb-10 text-white hidden" id="comics-create_field" onChange={(e) => setEpisodeContent(addFiles(e.target.files, episode_content))} /><br />
             </div>
         )
-    } else if (comic_content.length === 1) {
+    } else if (episode_content.length === 1) {
         return (
             <div>
-                <div className="border-2 border-white h-[800px] bg-white my-3 flex justify-center" onDrop={(e) => setComicContent(dropHandler(e, comic_content))} onDragOver={(e) => dragOverHandler(e)}>
+                <div className="border-2 border-white h-[800px] bg-white my-3 flex justify-center" onDrop={(e) => setEpisodeContent(dropHandler(e, episode_content))} onDragOver={(e) => dragOverHandler(e)}>
 
-                    {comic_content.map((file, index) => {
+                    {episode_content.map((file, index) => {
                         const fileURL = URL.createObjectURL(file);
                         return (
                             <div className="bg-gray-200 w-[600px] px-20 pb-10 pt-20 flex my-[32px] relative">
-                                <div className="bg-black h-fit absolute top-3 right-3 px-2 py-1 rounded-full hover:cursor-pointer hover:opacity-60" onClick={() => { setComicContent(deleteFile(index)) }}><FontAwesomeIcon icon={faXmark} size="2x" color="white" /></div>
+                                <div className="bg-black h-fit absolute top-3 right-3 px-2 py-1 rounded-full hover:cursor-pointer hover:opacity-60" onClick={() => { setEpisodeContent(deleteFile(index)) }}><FontAwesomeIcon icon={faXmark} size="2x" color="white" /></div>
                                 <img src={fileURL} alt={`image-${index}`} className="m-auto border-2 border-black" draggable='false' />
                             </div>
                         );
@@ -59,20 +59,20 @@ export const ComicDropZone = () => {
                         <FontAwesomeIcon icon={faPlus} size="7x" color="gray" />
                     </div>
                 </div>
-                <p className="text-white text-xl mb-10">{comic_content.length}ファイル</p>
-                <input type="file" ref={fileInputRef} name="comic_content[]" multiple accept=".jpg,.pdf" className="mb-10 text-white hidden" id="comics-create_field" onChange={(e) => setComicContent(addFiles(e.target.files, comic_content))} /><br />
+                <p className="text-white text-xl mb-10">{episode_content.length}ファイル</p>
+                <input type="file" ref={fileInputRef} name="comic_content[]" multiple accept=".jpg,.pdf" className="mb-10 text-white hidden" id="comics-create_field" onChange={(e) => setEpisodeContent(addFiles(e.target.files, episode_content))} /><br />
             </div>
         )
-    } else if (comic_content.length > 1) {
+    } else if (episode_content.length > 1) {
         return (
             <div>
-                <div className="border-2 border-white h-fit bg-white my-3 flex  flex-wrap gap-3 px-6" onDrop={(e) => setComicContent(dropHandler(e, comic_content))} onDragOver={(e) => dragOverHandler(e)}>
-                    {comic_content.map((file, index) => {
+                <div className="border-2 border-white h-fit bg-white my-3 flex  flex-wrap gap-3 px-6" onDrop={(e) => setEpisodeContent(dropHandler(e, episode_content))} onDragOver={(e) => dragOverHandler(e)}>
+                    {episode_content.map((file, index) => {
                         const fileURL = URL.createObjectURL(file);
                         return (
 
                             <div className="bg-gray-200 w-[160px] px-4 pb-2 pt-4 my-[32px]  relative" >
-                                <div className="bg-black h-fit absolute top-1 right-1 px-1 rounded-3xl hover:cursor-pointer hover:opacity-60" onClick={() => { setComicContent(deleteFile(index)) }}><FontAwesomeIcon icon={faXmark} size="2x" color="white" /></div>
+                                <div className="bg-black h-fit absolute top-1 right-1 px-1 rounded-3xl hover:cursor-pointer hover:opacity-60" onClick={() => { setEpisodeContent(deleteFile(index)) }}><FontAwesomeIcon icon={faXmark} size="2x" color="white" /></div>
                                 <img src={fileURL} alt={`image-${index}`} className="m-auto border-2 border-black" draggable='false' />
                             </div>
 
@@ -82,8 +82,8 @@ export const ComicDropZone = () => {
                         <FontAwesomeIcon icon={faPlus} size="7x" color="gray" />
                     </div>
                 </div>
-                <p className="text-white text-xl mb-10">{comic_content.length}ファイル</p>
-                <input type="file" ref={fileInputRef} name="comic_content[]" multiple accept=".jpg,.pdf" className="mb-10 text-white hidden" id="comics-create_field" onChange={(e) => setComicContent(addFiles(e.target.files, comic_content))} /><br />
+                <p className="text-white text-xl mb-10">{episode_content.length}ファイル</p>
+                <input type="file" ref={fileInputRef} name="comic_content[]" multiple accept=".jpg,.pdf" className="mb-10 text-white hidden" id="comics-create_field" onChange={(e) => setEpisodeContent(addFiles(e.target.files, episode_content))} /><br />
             </div>
         )
 

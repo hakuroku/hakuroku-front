@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { PostEpisodeStore, PostSeriesStore} from "./interface/postDataStore";
 
-export const usePostComic = create<PostEpisodeStore>((set)=> ({
+export const usePostEpisode = create<PostEpisodeStore>((set)=> ({
     episode_content: null,
     episode_title: '',
     episode_caption: '',

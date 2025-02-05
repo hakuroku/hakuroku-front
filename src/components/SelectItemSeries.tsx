@@ -1,5 +1,5 @@
 
-import { usePostComic } from "../hooks/usePostData";
+import { usePostEpisode } from "../hooks/usePostData";
 import { useActive, useSelectViewSeries } from "../hooks/activeUIStore";
 
 interface SeriesInfo {
@@ -10,7 +10,7 @@ interface SeriesInfo {
 
 export const SelectItemSeries: React.FC<SeriesInfo> = (seriesItem) => {
 
-    const { setSeriesId } = usePostComic();
+    const { setSeriesId } = usePostEpisode();
     const { setSelectViewSeriesTitle } = useSelectViewSeries();
     const { seriesSelect, setSeriesSelect } = useActive();
 

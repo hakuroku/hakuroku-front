@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { GetEpisode } from "../types/stateGetData"
+import { Episodes } from "../types/stateGetData"
 
 interface ComicViewerProps {
-    episode: GetEpisode
+    episode: Episodes
 }
 
 export const ComicViewer: React.FC<ComicViewerProps> = ({ episode }) => {

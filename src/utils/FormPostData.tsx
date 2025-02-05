@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { usePostComic} from '../hooks/usePostData';
+import { usePostEpisode} from '../hooks/usePostData';
 import { useSeriesGetData } from '../hooks/useGetData';
 import { useSelectViewSeries } from '../hooks/activeUIStore';
 import { ComicDropZone } from '../components/ComicDropZone';
@@ -12,28 +12,28 @@ import { TextareaComicUpload } from '../components/TextareaComicUpload';
 import { getData } from './getData';
 
 export const FormPostData = () => {
-    const { comic_content, comic_title, comic_caption, series_id, author_name, setComicContent, setComicTitle, setComicCaption, setSeriesId, setAuthorName } = usePostComic();
+    const { episode_content, episode_title, episode_caption, series_id, author_name, setEpisodeContent, setEpisodeTitle, setEpisodeCaption, setSeriesId, setAuthorName } = usePostEpisode();
     const { setSeries } = useSeriesGetData();
     const { setSelectViewSeriesTitle } = useSelectViewSeries();
     const location = useLocation();
     const navigate = useNavigate();
     
     // -------------------------データ送信---------------------
-    const PostComicData = async () => {
+    const PostEpisode = async () => {
         try {
             const url = 'http://127.0.0.1:8000/api/upload'
             const formData = new FormData;
 
-            if (comic_content) {
-                Array.from(comic_content).forEach((file) => {
-                    formData.append('comic_content[]', file);
+            if (episode_content) {
+                Array.from(episode_content).forEach((file) => {
+                    formData.append('episode_content[]', file);
                 });
             }
-            if (comic_title) {
-                formData.append('comic_title', comic_title);
+            if (episode_title) {
+                formData.append('episode_title', episode_title);
             }
-            if (comic_caption) {
-                formData.append('comic_caption', comic_caption);
+            if (episode_caption) {
+                formData.append('episode_caption', episode_caption);
             }
             if (series_id !== null) {
                 formData.append('series_id', series_id.toString())
@@ -62,7 +62,7 @@ export const FormPostData = () => {
 
     const handlePostSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        PostComicData();
+        PostEpisode();
     }
 
 
@@ -74,9 +74,9 @@ export const FormPostData = () => {
     }, [])
 
     useEffect(() => {
-        setComicContent(null);
-        setComicTitle('');
-        setComicCaption('');
+        setEpisodeContent(null);
+        setEpisodeTitle('');
+        setEpisodeCaption('');
         setSeriesId(null);
         setAuthorName('');
         setSelectViewSeriesTitle('');
@@ -89,8 +89,8 @@ export const FormPostData = () => {
 
                 <ComicDropZone />
                 <div className='bg-white w-[400px] mx-auto p-8 mb-8 '>
-                    <FormComicUpload setState={setComicTitle} item='作品名' text='エピソード・タイトル' />
-                    <TextareaComicUpload setState={setComicCaption} item='キャプション' text='あらすじ等' />
+                    <FormComicUpload setState={setEpisodeTitle} item='作品名' text='エピソード・タイトル' />
+                    <TextareaComicUpload setState={setEpisodeCaption} item='キャプション' text='あらすじ等' />
                     <FormComicUpload setState={setAuthorName} item='著者名' text='作者名' />
 
                     <div className="flex justify-end mx-auto items-center">

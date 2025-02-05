@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FormPostData } from "../utils/FormPostData";
 
 
-export const PostComic = () => {
+export const PostEpisode = () => {
 
     return (
         <div>
