@@ -3,9 +3,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { usePostComic} from '../hooks/usePostData';
 import { useSeriesGetData } from '../hooks/useGetData';
+import { useSelectViewSeries } from '../hooks/activeUIStore';
 import { ComicDropZone } from '../components/ComicDropZone';
 import { FormComicUpload } from '../components/FormComicUpload';
-import { ButtonSeriesSelect } from '../components/BottonSeriesSelect';
+import { ButtonSeriesSelect } from '../components/ButtonSeriesSelect';
 import { ModalSeriesForm } from '../components/ModalSeriesForm';
 import { TextareaComicUpload } from '../components/TextareaComicUpload';
 import { getData } from './getData';
@@ -13,14 +14,10 @@ import { getData } from './getData';
 export const FormPostData = () => {
     const { comic_content, comic_title, comic_caption, series_id, author_name, setComicContent, setComicTitle, setComicCaption, setSeriesId, setAuthorName } = usePostComic();
     const { setSeries } = useSeriesGetData();
+    const { setSelectViewSeriesTitle } = useSelectViewSeries();
     const location = useLocation();
     const navigate = useNavigate();
-
-    console.log(comic_content);
-    console.log(comic_caption)
-    console.log(series_id);
-    console.log(comic_title);
-    console.log(author_name);
+    
     // -------------------------データ送信---------------------
     const PostComicData = async () => {
         try {
@@ -82,6 +79,7 @@ export const FormPostData = () => {
         setComicCaption('');
         setSeriesId(null);
         setAuthorName('');
+        setSelectViewSeriesTitle('');
     }, [location])
 
 
@@ -95,7 +93,7 @@ export const FormPostData = () => {
                     <TextareaComicUpload setState={setComicCaption} item='キャプション' text='あらすじ等' />
                     <FormComicUpload setState={setAuthorName} item='著者名' text='作者名' />
 
-                    <div className="flex justify-end mx-auto">
+                    <div className="flex justify-end mx-auto items-center">
                         <p className='w-1/3 text-right font-serif pr-2'><span>シリーズ</span></p>
                         <ButtonSeriesSelect />
                     </div>

@@ -1,11 +1,10 @@
-import { useActive } from "../hooks/activeUIStore";
-import { usePostSeries } from "../hooks/usePostData"
+import { useActive, useSelectViewSeries } from "../hooks/activeUIStore";
 import { useSeriesGetData } from "../hooks/useGetData";
 import { SelectItemSeries } from "./SelectItemSeries";
 
 export const ButtonSeriesSelect = () => {
     const { series } = useSeriesGetData();
-    const { series_title } = usePostSeries();
+    const { selectViewSeriesTitle } = useSelectViewSeries();
     const { setSeriesModal, seriesSelect, setSeriesSelect } = useActive()
 
 
@@ -20,7 +19,7 @@ export const ButtonSeriesSelect = () => {
     } else if (series.length > 0) {
         return (
             <div className=" bg-gray-100 w-2/3">
-                {series_title === '' ? (
+                {selectViewSeriesTitle === '' ? (
                     <>
                         <div className="hover:bg-accent_C" onClick={() => { setSeriesSelect(!seriesSelect) }}><span className="hover:cursor-default">シリーズを選択する</span></div>
                         {series.map((s, index) => <SelectItemSeries key={index} seriesItem={s} series_title={s.series_title} id={s.id} />)}
@@ -29,8 +28,8 @@ export const ButtonSeriesSelect = () => {
                     </>
                 ) : (
                     <>
-                        <div className="hover:bg-accent_C" onClick={() => { setSeriesSelect(!seriesSelect) }}><span className="hover:cursor-default">{series_title}</span></div>
-                        {series.map((s, index) => (series_title !== s.series_title ?
+                        <div className="hover:bg-accent_C" onClick={() => { setSeriesSelect(!seriesSelect) }}><span className="hover:cursor-default">{selectViewSeriesTitle}</span></div>
+                        {series.map((s, index) => (selectViewSeriesTitle !== s.series_title ?
                             <SelectItemSeries key={index} seriesItem={s} series_title={s.series_title} id={s.id} /> : null
                         ))}
                         {seriesSelect === true ? (<div className="hover:bg-accent_C" onClick={() => { setSeriesModal(true) }}><span className="hover:cursor-default">シリーズを作成する</span></div>) : null}
