@@ -1,15 +1,14 @@
 import { useState } from "react"
-import { Episodes } from "../types/stateGetData"
+import { useEpisodeData } from "../hooks/useGetData"
 
-interface ComicViewerProps {
-    episode: Episodes
-}
 
-export const ComicViewer: React.FC<ComicViewerProps> = ({ episode }) => {
-    const [currentPage, setCurrentPage] = useState(0);
+export const ComicViewer = () => {
+    const {episode} = useEpisodeData();
+    const [currentPage, setCurrentPage] = useState(1);
+    console.log(episode)
     if (episode) {
         const goToNextPage = () => {
-            if (currentPage < episode.episodeContent.pages.length - 1) {
+            if (currentPage < episode.episodeContent.length - 1) {
                 setCurrentPage(currentPage + 2);
             }
         };
@@ -20,20 +19,25 @@ export const ComicViewer: React.FC<ComicViewerProps> = ({ episode }) => {
             }
         }
 
-        const pagesLength = episode.episodeContent.pages.length;
+        const pagesLength = episode.episodeContent.length;
         const progressPercentage = Math.min((currentPage / pagesLength) * 100, 100);
 
         console.log(pagesLength)
-        console.log(episode.episodeContent.pages[currentPage])
+        console.log(episode.episodeContent[currentPage])
 
+        console.log(currentPage)
         return (
             <div>
                 <div className="relative bg-black">
                     <div className="flex justify-center h-screen ">
 
-                        {currentPage > pagesLength - 1 ? null : <img src={episode.episodeContent.pages[currentPage]} alt={`Page ${currentPage - 1}`} />}
+                        {currentPage > pagesLength - 1 ? null : episode.episodeContent.map((i) => (
+                            <img src={episode.episodeContent[currentPage]} alt={`Page ${currentPage - 1}`} />
+                        ))}
 
-                        {currentPage === 0 ? null : <img src={episode.episodeContent.pages[currentPage - 1]} alt={`Page ${currentPage}`} />}
+                        {currentPage === 0 ? null : episode.episodeContent.map((i)=> (
+                            <img src={episode.episodeContent[currentPage - 1]} alt={`Page ${currentPage}`} />
+                            ))}
 
                     </div>
                     <div className="flex justify-around border-2 border-gray-100 ">
@@ -51,7 +55,7 @@ export const ComicViewer: React.FC<ComicViewerProps> = ({ episode }) => {
                     </div>
 
                     <div className="w-fit">
-                        {(currentPage + 1) > episode.episodeContent.pages.length ?
+                        {(currentPage + 1) > episode.episodeContent.length ?
                             <p className="p-3 bg-gray-100 text-4xl ">&lt;{currentPage}/{pagesLength}&gt;</p> :
                             <p className="p-3 bg-gray-100 text-4xl ">&lt;{currentPage + 1}/{pagesLength}&gt;</p>
                         }

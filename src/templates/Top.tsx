@@ -65,6 +65,11 @@ export const Top = () => {
     }
 
     // -------------------------autoSlider---------------------
+    useEffect(() => {
+        getData<TopInfos>('get/top-info')
+            .then((data) => setTopInfo(data))
+            .catch((error) => console.error(error))
+    }, [])
 
     useEffect(() => {
         const interval = setInterval(plusCount, 6000);
@@ -72,11 +77,7 @@ export const Top = () => {
         return () => clearInterval(interval)
     }, [count])
 
-    useEffect(() => {
-        getData<TopInfos>('get/top-info')
-            .then((data) => setTopInfo(data))
-            .catch((error) => console.error(error))
-    }, [])
+
     console.log(topInfo)
     return (
         <div>

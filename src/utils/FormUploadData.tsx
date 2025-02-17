@@ -10,8 +10,9 @@ import { ButtonSeriesSelect } from '../components/ButtonSeriesSelect';
 import { ModalSeriesForm } from '../components/ModalSeriesForm';
 import { TextareaComicUpload } from '../components/TextareaComicUpload';
 import { getData } from './getData';
+import { PostSeries } from '../types/stateGetData';
 
-export const FormPostData = () => {
+export const FormUploadData = () => {
     const { episode_content, episode_title, episode_caption, series_id, author_name, setEpisodeContent, setEpisodeTitle, setEpisodeCaption, setSeriesId, setAuthorName } = usePostEpisode();
     const { setSeries } = useSeriesGetData();
     const { setSelectViewSeriesTitle } = useSelectViewSeries();
@@ -22,39 +23,36 @@ export const FormPostData = () => {
     const PostEpisode = async () => {
         try {
             const url = 'http://127.0.0.1:8000/api/upload'
-            const formData = new FormData;
-
-            if (episode_content) {
+            const formData = new FormData();
+            const data = {
+                'episode_title': episode_title,
+                'episode_caption': episode_caption,
+                'series_id': series_id !== null ? series_id.toString() : null,
+                'author_name': author_name,
+            }
+            for (const [key, value] of Object.entries(data)) {
+                if (value) {
+                    formData.append(key, value.toString());
+                } else {
+                    navigate('/default')
+                }}
+                
+            if (episode_content && Array.isArray(episode_content)) {
                 Array.from(episode_content).forEach((file) => {
-                    formData.append('episode_content[]', file);
+                    formData.append('episode_content[]', file as File);
+                })
+
+                const response = await axios.post(url, formData, {
+                    headers: {
+                    },
+                    maxContentLength: Infinity,
+                    maxBodyLength: Infinity,
                 });
+                console.log('Response:', response.data)
+                navigate('/success')
+            } else {
+                navigate('/default')  
             }
-            if (episode_title) {
-                formData.append('episode_title', episode_title);
-            }
-            if (episode_caption) {
-                formData.append('episode_caption', episode_caption);
-            }
-            if (series_id !== null) {
-                formData.append('series_id', series_id.toString())
-            }
-            if (author_name) {
-                formData.append('author_name', author_name);
-            }
-
-            for (let pair of formData.entries()) {
-                console.log(pair[0], pair[1]); // ここで送信するデータが正しく含まれているか確認
-            }
-
-            const response = await axios.post(url, formData, {
-                headers: {
-                },
-                maxContentLength: Infinity,
-                maxBodyLength: Infinity,
-            });
-
-            console.log('Response:', response.data)
-            navigate('/success')
         } catch (error) {
             console.error('Error')
         }
@@ -68,7 +66,7 @@ export const FormPostData = () => {
 
     // -------------------------データ取得---------------------
     useEffect(() => {
-        getData<{ id: number, series_title: string }[]>('get/post-series')
+        getData<PostSeries>('get/upload-series')
             .then((data) => setSeries(data))
             .catch((error) => console.error(error))
     }, [])

@@ -1,8 +1,13 @@
-import { PostSeries, Episodes, TopInfos} from "../../types/stateGetData";
+import { PostSeries, Episodes, TopInfos, SeriesList} from "../../types/stateGetData";
+
+export interface GetSeriesListStore {
+    seriesList: SeriesList;
+    setSeriesList: (seriesList: SeriesList) => void;
+}
 
 export interface GetSeriesDataStore {
     series: PostSeries;
-    setSeries: (seriesList: PostSeries) => void
+    setSeries: (seriesList: PostSeries) => void;
 }
 
 export interface GetEpisodeStore {
@@ -12,6 +17,6 @@ export interface GetEpisodeStore {
 
 export interface GetTopInfoStore {
     topInfo: TopInfos;
-    setTopInfo: (topData: TopInfos) => void
+    setTopInfo: (topData: TopInfos) => void;
 }
 

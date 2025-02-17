@@ -1,48 +1,35 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useEpisodeData } from "../hooks/useGetData";
 import { ComicViewer } from "../components/ComicViewer";
-import { ComicsItems } from "./ComicItems";
+import { EpisodeList } from "./EpisodeList";
 import { getData } from "../utils/getData";
+import { Episodes } from "../types/stateGetData";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { EpisodeContent, EpisodeInfo } from "../types/getData";
+// import { EpisodeContent, EpisodeInfo } from "../types/getData";
 
 export const Episode = () => {
     const { url } = useParams();
+    const location = useLocation();
 
     const { episode, setEpisode } = useEpisodeData();
 
-
     useEffect(() => {
-        const getEpisodeData = async () => {
-            try {
-                const [res1, res2] = await Promise.all([
-                    getData<EpisodeContent>(`episode/${url}`),
-                    getData<EpisodeInfo>('get/episode')
-                ]);
+        getData<Episodes>(`episode/${url}`)
+            .then((data) => setEpisode(data))
+            .catch((error) => console.error(error))
+    }, [location])
 
-                const episodeData = {
-                    episodeContent: res1 ? { pages: res1.pages } : { pages: [] },
-                    episodeInfo: res2 || []
-                };
 
-                setEpisode(episodeData);
-
-            } catch (error) {
-                console.log()
-            }
-        }
-        getEpisodeData();
-    }, [])
-
+ 
     console.log(episode)
     return (
         <>
             <div>
-                <ComicViewer episode={episode} />
-                <ComicsItems />
+                <ComicViewer />
+                <EpisodeList />
             </div>
 
             <div className="flex justify-center items-center text-white hover:text-accent_C mt-10">

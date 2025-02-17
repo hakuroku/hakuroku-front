@@ -1,6 +1,10 @@
 import { create } from "zustand"
-import { GetSeriesDataStore, GetEpisodeStore, GetTopInfoStore } from "./interface/getDataStore"
+import { GetSeriesDataStore, GetEpisodeStore, GetTopInfoStore, GetSeriesListStore} from "./interface/getDataStore"
 
+export const useSeriesListGetData = create<GetSeriesListStore>((set) => ({
+    seriesList: undefined,
+    setSeriesList: (sl) => set({ seriesList: sl})
+}))
 
 export const useSeriesGetData = create<GetSeriesDataStore>((set) => ({
     series: [],
@@ -8,7 +12,7 @@ export const useSeriesGetData = create<GetSeriesDataStore>((set) => ({
 }))
 
 export const useEpisodeData = create<GetEpisodeStore>((set) => ({
-    episode: { episodeContent: {pages: []}, episodeInfo: [] },
+    episode: { episodeContent: [], seriesInfo: {series_title: '', series_caption: ''}, episodeInfo: [] },
     setEpisode: ( episodeData ) => set({ episode: episodeData })
 }))
 
