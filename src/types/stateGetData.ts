@@ -39,10 +39,10 @@ type Episodes = {
 
 type TopInfos = {
     seriesId: number;
-    seriesTitle: string;
+    series_title: string;
     seriesBgImg: string;
     seriesTopIcon: string;
-    topUrl: string ;
+    episode_url: string ;
 }[] | void
 
 
