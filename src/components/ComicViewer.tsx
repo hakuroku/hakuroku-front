@@ -4,7 +4,7 @@ import { useEpisodeData } from "../hooks/useGetData"
 
 export const ComicViewer = () => {
     const {episode} = useEpisodeData();
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState<number>(0);
     console.log(episode)
     if (episode) {
         const goToNextPage = () => {
@@ -31,13 +31,17 @@ export const ComicViewer = () => {
                 <div className="relative bg-black">
                     <div className="flex justify-center h-screen ">
 
-                        {currentPage > pagesLength - 1 ? null : episode.episodeContent.map((i) => (
-                            <img src={episode.episodeContent[currentPage]} alt={`Page ${currentPage - 1}`} />
+                        {episode.episodeContent.map((i, index) => (
+                            currentPage === index ? 
+                            ( <img key={index} src={i} alt={`Page ${currentPage - 1}`} />)
+                             : null
                         ))}
 
-                        {currentPage === 0 ? null : episode.episodeContent.map((i)=> (
-                            <img src={episode.episodeContent[currentPage - 1]} alt={`Page ${currentPage}`} />
-                            ))}
+                        {episode.episodeContent.map((i, index)=> (
+                            currentPage -1 === index ? 
+                            (<img src={i} alt={`Page ${currentPage}`} />)
+                            : null
+                        ))}
 
                     </div>
                     <div className="flex justify-around border-2 border-gray-100 ">
