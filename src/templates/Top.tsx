@@ -15,7 +15,9 @@ export const Top = () => {
     // -------------------------clickSlider---------------------
     const plusCount = () => {
         if (topInfo){
-            const imgsLength = topInfo.seriesMainImg.length - 1
+            const entries = Object.entries(topInfo.seriesMainImg)
+            const imgsLength = entries.length -1;
+            console.log(imgsLength)
             if (count < imgsLength) {
                 setCount(count + 1)
             } else {
@@ -27,25 +29,31 @@ export const Top = () => {
     // -------------------------autoSlider---------------------
     useEffect(() => {
         getData<TopInfos>('get/top-info')
-            .then((data) => setTopInfo(data))
+            .then((data) => {
+                setTopInfo(data)
+                setCount(0)
+            })
             .catch((error) => console.error(error))
     }, [])
 
     useEffect(() => {
-        const interval = setInterval(plusCount, 6000);
-        return () => clearInterval(interval)
-    }, [count])
+        if (topInfo) {
+            const interval = setInterval(plusCount, 6000);
+            return () => clearInterval(interval)
+        }
+    }, [ topInfo, count])
 
     
-
+    console.log(count)
     console.log(topInfo)
     return (
         <div className="relative">
-            {topInfo && topInfo.seriesMainImg ? (Object.entries(topInfo.seriesMainImg).map(([key, value]) => (
-                     <div key={key} className="h-screen relative bg-cover bg-center animate-fadeIn" style={{
+            {topInfo && topInfo.seriesMainImg ? (Object.entries(topInfo.seriesMainImg).map(([key, value], index) => (
+                 index === count ? (
+                    <div key={key} className="h-screen relative bg-cover bg-center animate-fadeIn" style={{
                         backgroundImage: `url(${value})`}}> 
                         <div className="w-full h-screen bg-black/40 "></div>
-                    </div>
+                    </div>) : null   
                     ))) : ( <div className="w-screen h-screen bg-cover bg-center" style={{backgroundImage: `url(/images/sample1.jpg)`}}>
                         <div className="w-full h-screen bg-black/40 "></div>
                         </div>)}
