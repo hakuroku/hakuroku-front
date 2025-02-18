@@ -3,6 +3,7 @@ import { usePostSeries} from "../hooks/usePostData";
 import { useSeriesGetData } from "../hooks/useGetData";
 import { useActive } from "../hooks/activeUIStore";
 import { getData } from "./getData";
+import { PostSeries } from "../types/stateGetData";
 
 
 
@@ -24,7 +25,7 @@ export const FormSeriesCreate = () => {
                 }
             });
             console.log('Response:', response.data);
-            await getData<{ id: number, series_title: string }[]>('getSeries')
+            await getData<PostSeries>('get/upload-series')
                 .then((data) => setSeries(data))
                 .catch((error) => console.error(error))
             setSeriesModal(false)

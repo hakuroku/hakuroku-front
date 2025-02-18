@@ -17,7 +17,7 @@ export const useEpisodeData = create<GetEpisodeStore>((set) => ({
 }))
 
 export const useTopInfo = create<GetTopInfoStore>((set) => ({
-    topInfo: [],
+    topInfo: undefined,
     setTopInfo: ( topData ) => set({ topInfo: topData})
 }))
 

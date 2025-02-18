@@ -38,12 +38,11 @@ type Episodes = {
 } | void
 
 type TopInfos = {
-    seriesId: number;
-    series_title: string;
-    seriesBgImg: string;
-    seriesTopIcon: string;
-    episode_url: string ;
-}[] | void
+    seriesTitle: string[];
+    seriesMainImg: string[];
+    seriesLinkImg: string[];
+    episodeUrl: string[];
+} | void
 
 
 

@@ -1,30 +1,33 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
 import { useTopCount } from "../hooks/activeUIStore";
+import { TopInfos } from "../types/stateGetData";
 // import { useTopInfo } from "../hooks/useGetData";
 
-interface topIconImg {
-    selectIcon: {
-        topImg: string;
-        iconImg: string;
-        url: string
-    }[],
+interface TopInfo {
+    topInfo: TopInfos
 }
 
-const TopIconList: React.FC<topIconImg> = ({ selectIcon }) => {
+const TopIconList: React.FC<TopInfo> = ({ topInfo }) => {
 
     const { count, setCount } = useTopCount();
     // const { topInfo } = useTopInfo();
     return (
         <div className="flex flex-row-reverse justify-right gap-20 absolute bottom-[2rem] right-20">
-            {selectIcon.map((i, index) => (
-                <div key={i.iconImg} className="border-2 w-20 h-80 overflow-hidden shadow-xl" id="comic-icon_frame" style={{ borderColor: count === index ? '#ffb433' : 'black', boxShadow: count === index ? '0 0 8px #ffb433' : 'none' }}>
-                    <Link to={`/episode/${i.url}`}>
-                        <img src={i.iconImg} className="size-full object-cover" onMouseOver={() => { setCount(index); }} />
-                    </Link>
-
+            
+            {topInfo && topInfo.seriesLinkImg ? (Object.entries(topInfo.seriesLinkImg).map(([key, value], index) => (
+                <div key={key} className="border-2 w-20 h-80 overflow-hidden shadow-xl" id="comic-icon_frame" style={{ borderColor: count === index ? '#ffb433' : 'black', boxShadow: count === index ? '0 0 8px #ffb433' : 'none' }}>
+                     {topInfo.episodeUrl && topInfo.episodeUrl[index] ? (
+            <Link to={`/episode/${topInfo.episodeUrl[index]}`}>
+              <img
+                src={value}
+                className="size-full object-cover"
+                onMouseOver={() => { setCount(index); }}
+              />
+            </Link>
+          ) : null}
                 </div>
-            ))}
+            ))) : null}
         </div>
 
 
