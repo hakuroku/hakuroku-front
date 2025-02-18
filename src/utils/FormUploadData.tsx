@@ -86,7 +86,7 @@ export const FormUploadData = () => {
             <form onSubmit={handlePostSubmit} encType="multipart/form-data" className="text-center">
 
                 <ComicDropZone />
-                <div className='bg-white w-[400px] mx-auto p-8 mb-8 '>
+                <div className='bg-main_C w-[400px] mx-auto p-8 mb-8 '>
                     <FormComicUpload setState={setEpisodeTitle} item='作品名' text='エピソード・タイトル' />
                     <TextareaComicUpload setState={setEpisodeCaption} item='キャプション' text='あらすじ等' />
                     <FormComicUpload setState={setAuthorName} item='著者名' text='作者名' />

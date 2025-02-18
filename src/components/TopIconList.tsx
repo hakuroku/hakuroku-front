@@ -16,9 +16,9 @@ const TopIconList: React.FC<topIconImg> = ({ selectIcon }) => {
     const { count, setCount } = TopCount();
     // const { topInfo } = useTopInfo();
     return (
-        <div className="flex flex-row-reverse justify-right gap-20 absolute bottom-[-5rem] right-20">
+        <div className="flex flex-row-reverse justify-right gap-20 absolute bottom-[2rem] right-20">
             {selectIcon.map((i, index) => (
-                <div key={i.iconImg} className="border-2 border- w-20 h-80 overflow-hidden shadow-xl" id="comic-icon_frame" style={{ borderColor: count === index ? '#ffb433' : 'black', boxShadow: count === index ? '0 0 8px #ffb433' : 'none' }}>
+                <div key={i.iconImg} className="border-2 w-20 h-80 overflow-hidden shadow-xl" id="comic-icon_frame" style={{ borderColor: count === index ? '#ffb433' : 'black', boxShadow: count === index ? '0 0 8px #ffb433' : 'none' }}>
                     <Link to={`/episode/${i.url}`}>
                         <img src={i.iconImg} className="size-full object-cover" onMouseOver={() => { setCount(index); }} />
                     </Link>

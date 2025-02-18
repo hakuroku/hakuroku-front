@@ -41,12 +41,12 @@ export const FormSeriesCreate = () => {
     return (
         <form onSubmit={handleSubmit} encType="multipart/form-data">
 
-            <div className="flex border-b items-center pb-2">
+            <div className="flex border-black border-b-2 items-center pb-2">
                 <div className=" py-4 w-1/3"><span className="mr-4 font-serif">シリーズ名</span>
                 </div>
                 <input type="text" name="series_name" className="bg-gray-100 w-full h-8 py-1 px-2 outline-none" placeholder="シリーズの名前" onChange={(i) => setSeriesTitle(i.target.value)} />
             </div>
-            <p className="mb-4"><span className="inline-block my-2 font-serif">あらすじ</span><br />
+            <p className="mb-4"><span className="inline-block my-4 font-serif">あらすじ</span><br />
                 <textarea name="series_summary" className="resize-none h-40 w-full bg-gray-100 m-auto outline-none px-2 py-1" placeholder="シリーズの概要" onChange={(i) => { setSeriesCaption(i.target.value) }}></textarea></p>
 
 

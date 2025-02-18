@@ -80,7 +80,7 @@ export const Top = () => {
 
     console.log(topInfo)
     return (
-        <div>
+        <div className="relative">
             <div key={fadeInKey} className="h-screen relative bg-cover bg-center animate-fadeIn" style={{
                 backgroundImage: `url(${selectIcon[count].topImg})`,
             }}>

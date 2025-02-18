@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAddIconData } from "../hooks/useAddIcon";
+import { useModalIcon } from "../hooks/activeUIStore";
+import { ModalBack } from "../components/ModalBack";
 
 export const FormChangeIcon = () => {
     const navigate = useNavigate()
     const { addSeriesId, addTopView, addLinkView, setAddSeriesId,setAddTopView, setAddLinkView} = useAddIconData();
+    const { setModalChangeIcon } = useModalIcon();
 
     console.log(addSeriesId, addTopView, addLinkView)
     const AddIcon = async () => {
@@ -51,13 +54,20 @@ export const FormChangeIcon = () => {
         }
     }
     return (
-        <div className="text-center" >
-            <form onSubmit={handlePostSubmit} encType="multipart/form-data">
-                <input type="number" name="addIconSeriesId" onChange={(e)=>setAddSeriesId(Number(e.target.value))}/><br />
-                <input type="file" name="addIconTopVIew" onChange={(e)=>setAddTopView(handleFileChange(e))}/><br />
-                <input type="file" name="addIconView" onChange={(e) => setAddLinkView(handleFileChange(e))} /><br />
-                <button type="submit" className="bg-red"><span>アイコンを編集する</span></button>
-            </form>
-        </div>
+        <>
+            <div className="bg-main_C w-[800px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left" >
+                <form onSubmit={handlePostSubmit} encType="multipart/form-data">
+                    <p className="text-center">変更するシリーズ：<input type="number" name="addIconSeriesId" onChange={(e) => setAddSeriesId(Number(e.target.value))} /><br /></p>
+                    <div className="flex justify-between p-8">
+                        <input type="file" name="addIconTopVIew" onChange={(e) => setAddTopView(handleFileChange(e))} /><br />
+                        <input type="file" name="addIconView" onChange={(e) => setAddLinkView(handleFileChange(e))} /><br />
+                    </div>
+                    <div className="w-fit m-auto">
+                        <button type="submit" className="px-7 py-2 bg-accent_C rounded-lg hover:bg-accent2_C"><span className="text-white">アイコンを変更する</span></button>
+                    </div>
+                </form>
+            </div>
+            <ModalBack setModal={setModalChangeIcon}/>
+        </>
     )
 }
