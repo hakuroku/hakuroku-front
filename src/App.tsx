@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation} from "react-router-dom";
+import { Routes, Route, useLocation} from "react-router-dom";
 import { Header } from "./templates/Header";
 import { Top } from "./templates/Top";
 import { Footer } from "./templates/Footer";
@@ -35,7 +35,7 @@ export const App = () => {
 
 
   return (
-    <div className='bg-black h-screen'>
+    <div className='bg-black min-h-screen'>
       {showHeader &&  <div className={`${location.pathname === '/' ? 'absolute top-0 left-0 w-full z-50 transition-opacity duration-500 ease-in-out' : null} ${showHeader ? 'opacity-100 animate-fadeIn2' : 'opacity-0'}`}><Header /></div>}
         <Routes>
           <Route path='/' element={<Top />} />
@@ -47,7 +47,7 @@ export const App = () => {
           <Route path='/default' element={<Default />} />
           <Route path='*' element={<NotFound/>} />
         </Routes>
-        <Footer/>
+        {location.pathname !== '/' ? <Footer/> : null}
     </div>
   )
 }

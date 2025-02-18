@@ -1,11 +1,16 @@
 import { create } from 'zustand'
-import { Counter, ActiveState, selectViewSeries, ActiveModalTopIcon} from './interface/activeUI'
+import { TopCounter, CurrentPage, ActiveState, selectViewSeries, ActiveModalTopIcon} from './interface/activeUI'
 
 
-export const TopCount = create<Counter>((set) => ({
+export const useTopCount = create<TopCounter>((set) => ({
     count: 0,
     setCount: (c) => set({count: c})
 }))  
+
+export const useCurrentPage = create<CurrentPage>((set) => ({
+    currentPage: 0,
+    setCurrentPage: (n) => set(() => ({ currentPage: n }))
+}))
 
 export const useModalIcon = create<ActiveModalTopIcon>((set) => ({
     modalAddIcon: false,

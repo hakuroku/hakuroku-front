@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
-import { TopCount } from "../hooks/activeUIStore";
+import { useTopCount } from "../hooks/activeUIStore";
 // import { useTopInfo } from "../hooks/useGetData";
 
 interface topIconImg {
@@ -13,7 +13,7 @@ interface topIconImg {
 
 const TopIconList: React.FC<topIconImg> = ({ selectIcon }) => {
 
-    const { count, setCount } = TopCount();
+    const { count, setCount } = useTopCount();
     // const { topInfo } = useTopInfo();
     return (
         <div className="flex flex-row-reverse justify-right gap-20 absolute bottom-[2rem] right-20">

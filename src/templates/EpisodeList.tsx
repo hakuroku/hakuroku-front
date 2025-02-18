@@ -1,4 +1,4 @@
-import { EpisodeItem } from "../components/episodeItem";
+import { EpisodeItem } from "../components/EpisodeItem";
 import { useEpisodeData } from "../hooks/useGetData"
 
 export const EpisodeList = () => {

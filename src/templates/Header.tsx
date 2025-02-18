@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+import { Logo } from "../components/Logo"
 
 export const Header = () => {
     return (
         <div className="bg-main_C shadow-md">
             <div className="flex items-center justify-between mr-4">
-                <Link to='/'><img className='w-16 sm:w-24 m-4 sm:m-5' src="/images/hakuroku_logo3.png" alt="logo" /></Link>
+                <Link to='/'><Logo/></Link>
 
                 <div className="flex items-center">
                     <ul className='flex items-center gap-4 pr-8'>

@@ -1,10 +1,11 @@
-import { useState } from "react"
+
 import { useEpisodeData } from "../hooks/useGetData"
+import { useCurrentPage } from "../hooks/activeUIStore";
 
 
 export const ComicViewer = () => {
     const {episode} = useEpisodeData();
-    const [currentPage, setCurrentPage] = useState<number>(0);
+    const {currentPage, setCurrentPage} = useCurrentPage();
     console.log(episode)
     if (episode) {
         const goToNextPage = () => {

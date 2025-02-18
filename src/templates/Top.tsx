@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import { TopCount } from "../hooks/activeUIStore";
+import { useTopCount } from "../hooks/activeUIStore";
 import { useTopInfo } from "../hooks/useGetData";
 import TopIconList from "../components/TopIconList";
 import { TopSeriesTitle } from "../components/TopSeriesTitle";
 import { temporaryIconItem } from "../hooks/interface/temporaryImgData";
 import { getData } from "../utils/getData";
 import { TopInfos } from "../types/stateGetData";
+import { Logo } from "../components/Logo";
 
 export const Top = () => {
     const { topInfo, setTopInfo } = useTopInfo()
-    const { count, setCount } = TopCount();
+    const { count, setCount } = useTopCount();
     const [fadeInKey, setFadeInKey] = useState(0);
     // -------------------------データ（仮）---------------------
 
@@ -84,10 +85,12 @@ export const Top = () => {
             <div key={fadeInKey} className="h-screen relative bg-cover bg-center animate-fadeIn" style={{
                 backgroundImage: `url(${selectIcon[count].topImg})`,
             }}>
+                
                 <TopSeriesTitle selectIcon={selectIcon} />
                 <div className="w-full h-screen bg-black/40 ">
                 </div>
             </div>
+            <div className="absolute top-0 bg-main_C"><Logo/></div>
             <TopIconList selectIcon={selectIcon} />
         </div>
     )

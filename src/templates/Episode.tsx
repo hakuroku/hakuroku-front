@@ -1,25 +1,31 @@
 import { useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { useEpisodeData } from "../hooks/useGetData";
+import { useCurrentPage } from "../hooks/activeUIStore";
 import { ComicViewer } from "../components/ComicViewer";
 import { EpisodeList } from "./EpisodeList";
 import { getData } from "../utils/getData";
 import { Episodes } from "../types/stateGetData";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-// import { EpisodeContent, EpisodeInfo } from "../types/getData";
+
+
 
 export const Episode = () => {
     const { url } = useParams();
     const location = useLocation();
 
     const { episode, setEpisode } = useEpisodeData();
+    const { setCurrentPage } = useCurrentPage();
 
     useEffect(() => {
         getData<Episodes>(`episode/${url}`)
-            .then((data) => setEpisode(data))
-            .catch((error) => console.error(error))
+        .then((data) => setEpisode(data))
+        .catch((error) => console.error(error))
+        setCurrentPage(0)
+        window.scrollTo({
+            top: 0,
+        })
     }, [location])
 
 

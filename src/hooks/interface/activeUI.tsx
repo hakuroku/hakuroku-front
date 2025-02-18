@@ -1,10 +1,16 @@
 import { SeriesTitle } from "../../types/statePostData";
-import { StateActive } from "../../types/stateActive";
+import { StateActive, Counter } from "../../types/stateActive";
 
-export interface Counter {
+export interface TopCounter {
     count: number;
-    setCount: (c: number) => void
+    setCount: (c: number) => void;
 }
+
+export interface CurrentPage {
+    currentPage: number;
+    setCurrentPage: (n: Counter) => void;
+}
+
 export interface ActiveModalTopIcon {
     modalAddIcon: StateActive;
     modalChangeIcon: StateActive;
