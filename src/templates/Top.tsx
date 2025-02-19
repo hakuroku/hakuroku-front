@@ -60,7 +60,7 @@ export const Top = () => {
                         </div>)}
             
             <TopSeriesTitle topInfo={topInfo} />
-            <div className="absolute top-0 bg-main_C"><Logo/></div>
+            <div className="absolute top-0"><Logo/></div>
             <TopIconList topInfo={topInfo} />
         </div>
     );
