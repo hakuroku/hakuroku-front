@@ -7,8 +7,8 @@ export const ButtonListTopLink = () => {
         <>
             <ul className="flex justify-center items-center flex-col text-center gap-8  text-xl mt-8">
                 <div onClick={() => setModalAddIcon(true)}><ButtonUpdateTopLink text={'追加'}/></div>
-                <div onClick={() => setModalAddIcon(true)}><ButtonUpdateTopLink text={'変更'} /></div>
-                <div onClick={() => setModalAddIcon(true)}><ButtonUpdateTopLink text={'削除'} /></div>
+                <div onClick={() => setModalChangeIcon(true)}><ButtonUpdateTopLink text={'変更'} /></div>
+                <div onClick={() => setModalDeleteIcon(true)}><ButtonUpdateTopLink text={'削除'} /></div>
             </ul>
         </>
     )
