@@ -3,30 +3,33 @@ import { useNavigate } from "react-router-dom";
 import { useAddIconData } from "../hooks/useAddIcon";
 import { useModalIcon } from "../hooks/activeUIStore";
 import { ModalBack } from "../components/ModalBack";
+import { FormSelectTilteUpdateLink } from "../components/FormSelectTitleUpdateLink";
 
 export const FormChangeIcon = () => {
     const navigate = useNavigate()
     const { addSeriesId, addTopView, addLinkView, setAddSeriesId,setAddTopView, setAddLinkView} = useAddIconData();
     const { setModalChangeIcon } = useModalIcon();
 
-    console.log(addSeriesId, addTopView, addLinkView)
+    const updateData = {
+        'series_id': addSeriesId?.toString(),
+        'top_main_img': addTopView,
+        'top_link_img': addLinkView
+    }
+    
     const AddIcon = async () => {
         try {
-            const url = 'http://127.0.0.1:8000/api/update/change-icon'
+            const url = 'http://127.0.0.1:8000/api/change/top-link'
             const formData = new FormData();
-            const data = {
-                'series_Id': addSeriesId?.toString(),
-                'top_main_img':addTopView,
-                'top_link_img':addLinkView
-            }
-            if (addSeriesId){
-                formData.append('series_id', addSeriesId.toString())
-            }
-            if (addTopView) {
-                formData.append('top_main_img', addTopView)
-            }
-            if (addLinkView) {
-                formData.append('top_link_img', addLinkView)
+            for (const [key, value] of Object.entries(updateData)) {
+                if (value) {
+                    if (value instanceof File) {
+                        formData.append(key, value);
+                    } else {
+                        formData.append(key, value.toString());
+                    }
+                } else {
+                    navigate('/default')
+                }
             }
             const response = await axios.post(url, formData, {
                 headers: {
@@ -34,8 +37,8 @@ export const FormChangeIcon = () => {
             });
             console.log('Response:', response.data)
             navigate('/success')
-        } catch {
-
+        } catch (error) {
+            console.error('Error')
         }
     }
 
@@ -57,7 +60,7 @@ export const FormChangeIcon = () => {
         <>
             <div className="bg-main_C w-[800px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left" >
                 <form onSubmit={handlePostSubmit} encType="multipart/form-data">
-                    <p className="text-center">変更するシリーズ：<input type="number" name="addIconSeriesId" onChange={(e) => setAddSeriesId(Number(e.target.value))} /><br /></p>
+                    <FormSelectTilteUpdateLink item={'変更するシリーズ：'} setState={setAddSeriesId} />
                     <div className="flex justify-between p-8">
                         <input type="file" name="addIconTopVIew" onChange={(e) => setAddTopView(handleFileChange(e))} /><br />
                         <input type="file" name="addIconView" onChange={(e) => setAddLinkView(handleFileChange(e))} /><br />

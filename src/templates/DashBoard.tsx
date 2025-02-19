@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { ButtonListTopLink } from "../components/ButtonListTopLink";
 import { FormAddIcon } from "../utils/FormAddIcon";
 import { FormChangeIcon } from "../utils/FormChangeIcon";
 import { FormDeleteIcon } from "../utils/FormDeleteIcon";
 import { useModalIcon} from "../hooks/activeUIStore";
 export const DashBoard = () => {
-    const [formIconActive, setFormIconActive] = useState(1)
-    const {modalAddIcon, modalChangeIcon, modalDeleteIcon, setModalAddIcon, setModalChangeIcon, setModalDeleteIcon} = useModalIcon()
+    
+    const {modalAddIcon, modalChangeIcon, modalDeleteIcon} = useModalIcon()
 
     return (
         <>
-        <ul className="flex justify-center gap-8 text-white text-xl">
-            <li className="hover:cursor-pointer" onClick={() =>setModalAddIcon(true)}>追加</li>
-            <li className="hover:cursor-pointer" onClick={() =>setModalChangeIcon(true)}>編集</li>
-            <li className="hover:cursor-pointer" onClick={() =>setModalDeleteIcon(true)}>削除</li>
-        </ul>
+            <p className="mt-8 mx-auto px-8 py-4 bg-main_C w-fit text-xl font-bold font-serif">Top画面</p>
+            <div className="bg-main_C w-[400px] mx-auto p-8 ">
+                
+                <ButtonListTopLink/>
+            </div>
         {modalAddIcon ? <FormAddIcon /> : null}
         {modalChangeIcon ? <FormChangeIcon/> : null}
         {modalDeleteIcon ? <FormDeleteIcon/> : null}

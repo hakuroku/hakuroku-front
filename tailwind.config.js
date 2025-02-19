@@ -12,6 +12,10 @@ export default {
       'red': 'red',
     },
     extend: {
+      fontFamily: {
+        "yuji-mai": ["Yuji mai", "sans-serif"],
+        
+      },
       animation: {
         "fadeIn": "fadeIn 3s ease both",
         "fadeIn2": "fadeIn 0.5s ease both"

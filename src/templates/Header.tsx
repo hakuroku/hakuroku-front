@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import { Logo } from "../components/Logo"
+import { FormSearch } from "../utils/FormSearch"
 
 export const Header = () => {
     return (
@@ -15,10 +14,7 @@ export const Header = () => {
                         <Link to='/dashboard'><li className=" hover:text-accent2_C">ダッシュボード</li></Link>
                         <Link to='/upload/episode'><li className=" hover:text-accent2_C">作品投稿</li></Link>
                     </ul>
-                    <input type="search" className="border-2 outline-none px-1" />
-                    <button className="px-1 border-2 bg-white">
-                        <FontAwesomeIcon icon={faMagnifyingGlass} />
-                    </button>
+                    <FormSearch/>
                 </div>
             </div>
         </div>

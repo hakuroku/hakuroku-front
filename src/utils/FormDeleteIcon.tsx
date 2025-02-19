@@ -12,11 +12,8 @@ export const FormDeleteIcon = () => {
     console.log(addSeriesId)
     const UpdateIcon = async () => {
         try {
-            const url = 'http://127.0.0.1:8000/api/update/delete-icon'
+            const url = 'http://127.0.0.1:8000/api/delete/top-link'
             const formData = new FormData();
-            const data = {
-                'series_Id': addSeriesId?.toString(),
-            }
             if (addSeriesId){
                 formData.append('series_id', addSeriesId.toString())
             }
@@ -26,8 +23,8 @@ export const FormDeleteIcon = () => {
             });
             console.log('Response:', response.data)
             navigate('/success')
-        } catch {
-
+        } catch (error) {
+            console.error('Error')
         }
     }
 

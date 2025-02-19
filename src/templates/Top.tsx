@@ -13,10 +13,11 @@ export const Top = () => {
     const { count, setCount } = useTopCount();
 
     // -------------------------clickSlider---------------------
+    
     const plusCount = () => {
         if (topInfo){
             const entries = Object.entries(topInfo.seriesMainImg)
-            const imgsLength = entries.length -1;
+            const imgsLength = entries.length - 1;
             console.log(imgsLength)
             if (count < imgsLength) {
                 setCount(count + 1)
@@ -48,7 +49,7 @@ export const Top = () => {
     console.log(topInfo)
     return (
         <div className="relative">
-            {topInfo && topInfo.seriesMainImg ? (Object.entries(topInfo.seriesMainImg).map(([key, value], index) => (
+            {topInfo && topInfo.seriesMainImg.length !== 0 ? (Object.entries(topInfo.seriesMainImg).map(([key, value], index) => (
                  index === count ? (
                     <div key={key} className="h-screen relative bg-cover bg-center animate-fadeIn" style={{
                         backgroundImage: `url(${value})`}}> 
