@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useAddIconData } from "../hooks/useAddIcon";
 import { useModalIcon } from "../hooks/activeUIStore";
 import { ModalBack } from "../components/ModalBack";
-import { FormSelectTilteUpdateLink } from "../components/FormSelectTitleUpdateLink";
+import { FormSelectTitleUpdateLink } from "../components/FormSelectTitleUpdateLink";
+import { ButtonSubmit } from "../components/ButtonSubmit";
 
 export const FormChangeIcon = () => {
     const navigate = useNavigate()
@@ -60,17 +61,17 @@ export const FormChangeIcon = () => {
         <>
             <div className="bg-main_C w-[800px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left" >
                 <form onSubmit={handlePostSubmit} encType="multipart/form-data">
-                    <FormSelectTilteUpdateLink item={'変更するシリーズ：'} setState={setAddSeriesId} />
+                    <FormSelectTitleUpdateLink item={'変更するシリーズ：'} setState={setAddSeriesId} />
                     <div className="flex justify-between p-8">
                         <input type="file" name="addIconTopVIew" onChange={(e) => setAddTopView(handleFileChange(e))} /><br />
                         <input type="file" name="addIconView" onChange={(e) => setAddLinkView(handleFileChange(e))} /><br />
                     </div>
                     <div className="w-fit m-auto">
-                        <button type="submit" className="px-7 py-2 bg-accent_C rounded-lg hover:bg-accent2_C"><span className="text-white">アイコンを変更する</span></button>
+                        <button type="submit"><ButtonSubmit text={'アイコンを変更する'}/></button>
                     </div>
                 </form>
             </div>
-            <ModalBack setModal={setModalChangeIcon}/>
+            <div onClick={()=>{ setModalChangeIcon(false)}}><ModalBack /></div>
         </>
     )
 }

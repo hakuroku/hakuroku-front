@@ -1,4 +1,5 @@
 import { BackToTop } from "../components/BackToTop"
+import { Degical } from "../components/Degical"
 
 export const NotFound = () => {
     return (
@@ -7,11 +8,11 @@ export const NotFound = () => {
                 <p>お探しのページは見つかりませんでした。</p>
                 <p>以下のリンクから改めて作品をお探しください。</p>
             </div>
-            <BackToTop />
+            <BackToTop position={'center'}/>
 
-            <div className="flex justify-between px-8">
-                <img src="./images/デジカル君1.png" alt="" />
-                <img src="./images/デジカル君1.png" alt="" />
+            <div className="flex justify-around px-8">
+                <Degical/>
+                <Degical/>
             </div>
         </div>
     )

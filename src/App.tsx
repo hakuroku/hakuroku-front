@@ -38,7 +38,7 @@ export const App = () => {
   return (
     <div className='bg-black min-h-screen flex flex-col'>
       {showHeader &&  <div className={`${location.pathname === '/' ? 'absolute top-0 left-0 w-full z-50 transition-opacity duration-500 ease-in-out' : null} ${showHeader ? 'opacity-100 animate-fadeIn2' : 'opacity-0'}`}><Header /></div>}
-      <div className="flex-1">
+      <div className="flex-1 relative">
           <Routes>
             <Route path='/' element={<Top />} />
             <Route path='/upload/episode' element={<UploadEpisode />} />

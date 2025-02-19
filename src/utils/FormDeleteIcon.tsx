@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAddIconData } from "../hooks/useAddIcon";
 import { useModalIcon } from "../hooks/activeUIStore";
 import { ModalBack } from "../components/ModalBack";
+import { ButtonSubmit } from "../components/ButtonSubmit";
 
 export const FormDeleteIcon = () => {
     const navigate = useNavigate()
@@ -39,11 +40,11 @@ export const FormDeleteIcon = () => {
                 <form onSubmit={handlePostSubmit} encType="multipart/form-data">
                     <p className="text-center mb-8">削除するシリーズ：<input type="number" name="addIconSeriesId" onChange={(e) => setAddSeriesId(Number(e.target.value))} /><br /></p>
                     <div className="mx-auto w-fit">
-                        <button type="submit" className="px-7 py-2 bg-accent_C rounded-lg hover:bg-accent2_C"><span className="text-white">アイコンを削除する</span></button>
+                        <button type="submit"><ButtonSubmit text={'アイコンを削除する'}/></button>
                     </div>
                 </form>
             </div>
-            <ModalBack setModal={setModalDeleteIcon}/>
+            <div onClick={()=>{ setModalDeleteIcon(false)}}><ModalBack/></div>
         </>
     )
 }
