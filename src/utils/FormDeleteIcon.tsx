@@ -1,14 +1,19 @@
+import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAddIconData } from "../hooks/useAddIcon";
 import { useModalIcon } from "../hooks/activeUIStore";
+import { useSeriesTitlesGet } from "../hooks/useGetData";
+import { getData } from "./getData";
 import { ModalBack } from "../components/ModalBack";
 import { ButtonSubmit } from "../components/ButtonSubmit";
+import { SeriesTitles } from "../types/stateGetData";
 
 export const FormDeleteIcon = () => {
     const navigate = useNavigate()
     const { addSeriesId, setAddSeriesId} = useAddIconData();
-    const { setModalDeleteIcon } = useModalIcon();
+    const {modalDeleteIcon, setModalDeleteIcon } = useModalIcon();
+    const { seriesTitles, setSeriesTitles} = useSeriesTitlesGet();
 
     console.log(addSeriesId)
     const UpdateIcon = async () => {
@@ -34,6 +39,14 @@ export const FormDeleteIcon = () => {
         UpdateIcon();
     }
 
+    useEffect(() => {
+        setAddSeriesId(null);
+        getData<SeriesTitles>('get/delete/top-links')
+            .then((data) => setSeriesTitles(data))
+            .catch((error) => console.error(error))
+    }, [modalDeleteIcon])
+
+    console.log(seriesTitles)
     return (
         <>
             <div className="bg-main_C w-[800px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left" >

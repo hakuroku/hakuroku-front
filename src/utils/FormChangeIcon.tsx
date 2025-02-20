@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { getData } from "./getData";
 import { useAddIconData } from "../hooks/useAddIcon";
 import { useModalIcon } from "../hooks/activeUIStore";
+import { useSeriesTitlesGet } from "../hooks/useGetData";
+import { SeriesTitles } from "../types/stateGetData";
 import { ModalBack } from "../components/ModalBack";
 import { FormSelectTitleUpdateLink } from "../components/FormSelectTitleUpdateLink";
 import { ButtonSubmit } from "../components/ButtonSubmit";
@@ -9,7 +13,8 @@ import { ButtonSubmit } from "../components/ButtonSubmit";
 export const FormChangeIcon = () => {
     const navigate = useNavigate()
     const { addSeriesId, addTopView, addLinkView, setAddSeriesId,setAddTopView, setAddLinkView} = useAddIconData();
-    const { setModalChangeIcon } = useModalIcon();
+    const { modalChangeIcon, setModalChangeIcon } = useModalIcon();
+    const { seriesTitles, setSeriesTitles} = useSeriesTitlesGet();
 
     const updateData = {
         'series_id': addSeriesId?.toString(),
@@ -57,6 +62,17 @@ export const FormChangeIcon = () => {
             return null
         }
     }
+
+        useEffect(()=> {
+            setAddSeriesId(null);
+            setAddTopView(null);
+            setAddLinkView(null);
+            getData<SeriesTitles>('get/change/top-links')
+                .then((data) => setSeriesTitles(data))
+                .catch((error) => console.error(error))
+        }, [modalChangeIcon])
+
+        console.log(seriesTitles)
     return (
         <>
             <div className="bg-main_C w-[800px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left" >

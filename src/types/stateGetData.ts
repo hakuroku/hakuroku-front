@@ -31,6 +31,8 @@ type SeriesInfo = {
     series_caption: string;
 } 
 
+type SeriesTitles  = string[] | void
+
 type Episodes = {
     episodeContent: EpisodeContent;
     seriesInfo: SeriesInfo;
@@ -46,4 +48,4 @@ type TopInfos = {
 
 
 
-export type {PostSeries, Episodes, TopInfos, SeriesList}
+export type {PostSeries, Episodes, TopInfos, SeriesList, SeriesTitles}

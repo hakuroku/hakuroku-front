@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import axios from "axios";
 import { usePostSeries} from "../hooks/usePostData";
 import { useSeriesGetData } from "../hooks/useGetData";
@@ -5,12 +6,10 @@ import { useActive } from "../hooks/activeUIStore";
 import { getData } from "./getData";
 import { PostSeries } from "../types/stateGetData";
 
-
-
 export const FormSeriesCreate = () => {
     const { series_title, series_caption, setSeriesTitle, setSeriesCaption } = usePostSeries();
     const { setSeries } = useSeriesGetData();
-    const { setSeriesModal } = useActive();
+    const { seriesModal, setSeriesModal } = useActive();
     // -------------------------データ送信---------------------
     const postData = async () => {
         try {
@@ -38,6 +37,11 @@ export const FormSeriesCreate = () => {
         e.preventDefault();
         postData();
     }
+
+    useEffect(()=> {
+        setSeriesTitle('')
+        setSeriesCaption('')
+    }, [seriesModal])
 
     return (
         <form onSubmit={handleSubmit} encType="multipart/form-data">
