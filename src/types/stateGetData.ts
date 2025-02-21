@@ -31,7 +31,7 @@ type SeriesInfo = {
     series_caption: string;
 } 
 
-type SeriesTitles  = string[] | void
+type SeriesTitles  = { id: number; series_title: string}[] | void
 
 type Episodes = {
     episodeContent: EpisodeContent;

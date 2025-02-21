@@ -20,6 +20,16 @@ export interface ActiveModalTopIcon {
     setModalDeleteIcon: (s: StateActive) => void;
 }
 
+export interface ActiveModalTopLinksSelect {
+    seriesSelect: StateActive;
+    setSeriesSelect : (b: StateActive) => void;
+}
+
+export interface SelectSeriesTitle {
+    seriesTitle: SeriesTitle;
+    setSeriesTitle: (t: SeriesTitle) => void;
+}
+
 export interface ActiveState {
     seriesModal:StateActive;
     seriesSelect: StateActive;

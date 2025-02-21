@@ -6,9 +6,11 @@ import { useAddIconData } from "../hooks/useAddIcon";
 import { useModalIcon } from "../hooks/activeUIStore";
 import { useSeriesTitlesGet } from "../hooks/useGetData";
 import { SeriesTitles } from "../types/stateGetData";
+import { useModalTopLinksSelect } from "../hooks/activeUIStore";
 import { ModalBack } from "../components/ModalBack";
 import { FormSelectTitleUpdateLink } from "../components/FormSelectTitleUpdateLink";
 import { ButtonSubmit } from "../components/ButtonSubmit";
+import { useSelectSeriesDashBoard } from "../hooks/activeUIStore";
 
 
 export const FormAddIcon = () => {
@@ -16,6 +18,8 @@ export const FormAddIcon = () => {
     const { addSeriesId, addTopView, addLinkView, setAddSeriesId,setAddTopView, setAddLinkView} = useAddIconData();
     const { modalAddIcon, setModalAddIcon} = useModalIcon();
     const { seriesTitles, setSeriesTitles} = useSeriesTitlesGet();
+    const { setSeriesSelect} = useModalTopLinksSelect();
+    const { seriesTitle, setSeriesTitle } = useSelectSeriesDashBoard();
 
     console.log(addSeriesId, addTopView, addLinkView)
     const updateData = {
@@ -69,26 +73,44 @@ export const FormAddIcon = () => {
         setAddSeriesId(null);
         setAddTopView(null);
         setAddLinkView(null);
-        getData<SeriesTitles>('get//top-links')
+        setSeriesSelect(false)
+        getData<SeriesTitles>('get/add/top-links')
             .then((data) => setSeriesTitles(data))
             .catch((error) => console.error(error))
     }, [modalAddIcon])
 
-    console.log(seriesTitles)
+    useEffect(() => {
+        if (seriesTitles && seriesTitles.length > 0) {
+            setAddSeriesId(seriesTitles[0].id);
+            setSeriesTitle(seriesTitles[0].series_title);
+        }
+    }, [seriesTitles])
+
+    console.log(seriesTitle)
 
     return (
         <>
-            <div className="bg-main_C w-[800px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left" >
-                <form onSubmit={handlePostSubmit} encType="multipart/form-data">
-                    <FormSelectTitleUpdateLink item={'追加するシリーズ：'} setState={setAddSeriesId}/>
-                    <div className="flex justify-between p-8">
-                        <input type="file" name="addIconTopVIew" onChange={(e)=>setAddTopView(handleFileChange(e))}/><br />
-                        <input type="file" name="addIconView" onChange={(e) => setAddLinkView(handleFileChange(e))} /><br />
+            <div className="bg-main_C w-[800px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left">
+                {seriesTitles === undefined || seriesTitles.length === 0 ? (
+                    <>
+                    <div className="text-center">
+                        <p>※現在追加可能なシリーズはありません。</p>
                     </div>
-                    <div className="w-fit m-auto">
-                        <button type="submit"><ButtonSubmit text={'アイコンを追加する'}/></button>
-                    </div>
-                </form>
+                    </>
+                ) : (
+                    <>
+                        <form onSubmit={handlePostSubmit} encType="multipart/form-data">
+                            <FormSelectTitleUpdateLink item={'追加するシリーズ：'} setState={setAddSeriesId} />
+                            <div className="flex justify-between p-8">
+                                <input type="file" name="addIconTopVIew" onChange={(e) => setAddTopView(handleFileChange(e))} /><br />
+                                <input type="file" name="addIconView" onChange={(e) => setAddLinkView(handleFileChange(e))} /><br />
+                            </div>
+                            <div className="w-fit m-auto">
+                                <button type="submit"><ButtonSubmit text={'アイコンを追加する'} /></button>
+                            </div>
+                        </form>
+                    </>
+                    ) }
             </div>
 
             <div onClick={()=>{ setModalAddIcon(false)}}><ModalBack/></div>

@@ -3,7 +3,7 @@ import { Degical } from "../components/Degical"
 
 export const NotFound = () => {
     return (
-        <div className="text-white text-center h-[80vh]">
+        <div className="text-white text-center">
             <div className="pt-[20vh] mb-6">
                 <p>お探しのページは見つかりませんでした。</p>
                 <p>以下のリンクから改めて作品をお探しください。</p>

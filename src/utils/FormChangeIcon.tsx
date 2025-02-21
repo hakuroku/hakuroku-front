@@ -3,19 +3,23 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getData } from "./getData";
 import { useAddIconData } from "../hooks/useAddIcon";
-import { useModalIcon } from "../hooks/activeUIStore";
+import { useModalIcon, useSelectSeriesDashBoard, useModalTopLinksSelect } from "../hooks/activeUIStore";
 import { useSeriesTitlesGet } from "../hooks/useGetData";
-import { SeriesTitles } from "../types/stateGetData";
 import { ModalBack } from "../components/ModalBack";
-import { FormSelectTitleUpdateLink } from "../components/FormSelectTitleUpdateLink";
 import { ButtonSubmit } from "../components/ButtonSubmit";
+import { SeriesTitles } from "../types/stateGetData";
+import { FormSelectTitleUpdateLink } from "../components/FormSelectTitleUpdateLink";
+
 
 export const FormChangeIcon = () => {
     const navigate = useNavigate()
     const { addSeriesId, addTopView, addLinkView, setAddSeriesId,setAddTopView, setAddLinkView} = useAddIconData();
     const { modalChangeIcon, setModalChangeIcon } = useModalIcon();
     const { seriesTitles, setSeriesTitles} = useSeriesTitlesGet();
+    const { setSeriesSelect} = useModalTopLinksSelect();
+    const { seriesTitle, setSeriesTitle } = useSelectSeriesDashBoard();
 
+    console.log(addSeriesId, addTopView, addLinkView)
     const updateData = {
         'series_id': addSeriesId?.toString(),
         'top_main_img': addTopView,
@@ -63,31 +67,50 @@ export const FormChangeIcon = () => {
         }
     }
 
-        useEffect(()=> {
-            setAddSeriesId(null);
-            setAddTopView(null);
-            setAddLinkView(null);
-            getData<SeriesTitles>('get/change/top-links')
-                .then((data) => setSeriesTitles(data))
-                .catch((error) => console.error(error))
-        }, [modalChangeIcon])
+    useEffect(()=> {
+        setAddSeriesId(null);
+        setAddTopView(null);
+        setAddLinkView(null);
+        setSeriesSelect(false)
+        getData<SeriesTitles>('get/change/top-links')
+            .then((data) => setSeriesTitles(data))
+            .catch((error) => console.error(error))
+    }, [modalChangeIcon])
 
-        console.log(seriesTitles)
+    useEffect(() => {
+        if (seriesTitles && seriesTitles.length > 0) {
+            setAddSeriesId(seriesTitles[0].id);
+            setSeriesTitle(seriesTitles[0].series_title);
+        }
+    }, [seriesTitles])
+
+
     return (
-        <>
-            <div className="bg-main_C w-[800px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left" >
-                <form onSubmit={handlePostSubmit} encType="multipart/form-data">
-                    <FormSelectTitleUpdateLink item={'変更するシリーズ：'} setState={setAddSeriesId} />
-                    <div className="flex justify-between p-8">
-                        <input type="file" name="addIconTopVIew" onChange={(e) => setAddTopView(handleFileChange(e))} /><br />
-                        <input type="file" name="addIconView" onChange={(e) => setAddLinkView(handleFileChange(e))} /><br />
-                    </div>
-                    <div className="w-fit m-auto">
-                        <button type="submit"><ButtonSubmit text={'アイコンを変更する'}/></button>
-                    </div>
-                </form>
-            </div>
-            <div onClick={()=>{ setModalChangeIcon(false)}}><ModalBack /></div>
-        </>
-    )
+           <>
+               <div className="bg-main_C w-[800px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left">
+                   {seriesTitles === undefined || seriesTitles.length === 0 ? (
+                       <>
+                       <div className="text-center">
+                           <p>※現在変更可能なシリーズはありません。</p>
+                       </div>
+                       </>
+                   ) : (
+                       <>
+                           <form onSubmit={handlePostSubmit} encType="multipart/form-data">
+                               <FormSelectTitleUpdateLink item={'追加するシリーズ：'} setState={setAddSeriesId} />
+                               <div className="flex justify-between p-8">
+                                   <input type="file" name="addIconTopVIew" onChange={(e) => setAddTopView(handleFileChange(e))} /><br />
+                                   <input type="file" name="addIconView" onChange={(e) => setAddLinkView(handleFileChange(e))} /><br />
+                               </div>
+                               <div className="w-fit m-auto">
+                                   <button type="submit"><ButtonSubmit text={'アイコンを変更する'} /></button>
+                               </div>
+                           </form>
+                       </>
+                       ) }
+               </div>
+   
+               <div onClick={()=>{ setModalChangeIcon(false)}}><ModalBack/></div>
+           </>
+       )
 }

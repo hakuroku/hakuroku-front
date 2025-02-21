@@ -1,19 +1,23 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAddIconData } from "../hooks/useAddIcon";
-import { useModalIcon } from "../hooks/activeUIStore";
-import { useSeriesTitlesGet } from "../hooks/useGetData";
 import { getData } from "./getData";
+import { useAddIconData } from "../hooks/useAddIcon";
+import { useModalIcon, useSelectSeriesDashBoard, useModalTopLinksSelect } from "../hooks/activeUIStore";
+import { useSeriesTitlesGet } from "../hooks/useGetData";
 import { ModalBack } from "../components/ModalBack";
 import { ButtonSubmit } from "../components/ButtonSubmit";
 import { SeriesTitles } from "../types/stateGetData";
+import { FormSelectTitleUpdateLink } from "../components/FormSelectTitleUpdateLink";
 
 export const FormDeleteIcon = () => {
     const navigate = useNavigate()
     const { addSeriesId, setAddSeriesId} = useAddIconData();
     const {modalDeleteIcon, setModalDeleteIcon } = useModalIcon();
     const { seriesTitles, setSeriesTitles} = useSeriesTitlesGet();
+    const { setSeriesSelect} = useModalTopLinksSelect();
+    const { setSeriesTitle } = useSelectSeriesDashBoard();
+    
 
     console.log(addSeriesId)
     const UpdateIcon = async () => {
@@ -41,23 +45,43 @@ export const FormDeleteIcon = () => {
 
     useEffect(() => {
         setAddSeriesId(null);
+        setSeriesSelect(false)
         getData<SeriesTitles>('get/delete/top-links')
             .then((data) => setSeriesTitles(data))
             .catch((error) => console.error(error))
     }, [modalDeleteIcon])
 
-    console.log(seriesTitles)
+    useEffect(() => {
+        if (seriesTitles && seriesTitles.length > 0) {
+            setAddSeriesId(seriesTitles[0].id);
+            setSeriesTitle(seriesTitles[0].series_title);
+        }
+    }, [seriesTitles])
+
+
     return (
         <>
-            <div className="bg-main_C w-[800px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left" >
-                <form onSubmit={handlePostSubmit} encType="multipart/form-data">
-                    <p className="text-center mb-8">削除するシリーズ：<input type="number" name="addIconSeriesId" onChange={(e) => setAddSeriesId(Number(e.target.value))} /><br /></p>
-                    <div className="mx-auto w-fit">
-                        <button type="submit"><ButtonSubmit text={'アイコンを削除する'}/></button>
+            <div className="bg-main_C w-[800px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left" onClick={()=> setSeriesSelect(false)}>
+                {seriesTitles === undefined || seriesTitles.length === 0 ? (
+                    <>
+                    <div className="text-center">
+                        <p>※現在削除可能なシリーズはありません。</p>
                     </div>
-                </form>
+                    </>
+                ) : (
+                    <>
+                        <form onSubmit={handlePostSubmit} encType="multipart/form-data">
+                                <FormSelectTitleUpdateLink item={'削除するシリーズ：'} setState={setAddSeriesId} />
+                            <div className="mx-auto w-fit">
+                                <button type="submit"><ButtonSubmit text={'アイコンを削除する'} /></button>
+                            </div>
+                        </form>
+                    </>
+                    ) }
             </div>
             <div onClick={()=>{ setModalDeleteIcon(false)}}><ModalBack/></div>
+            
+            
         </>
     )
 }
