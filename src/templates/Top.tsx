@@ -44,9 +44,8 @@ export const Top = () => {
         }
     }, [ topInfo, count])
 
-    
-    console.log(count)
-    console.log(topInfo)
+    const data = localStorage.getItem('user')
+    console.log(data)
     return (
         <div className="relative">
             {topInfo && topInfo.seriesMainImg.length !== 0 ? (Object.entries(topInfo.seriesMainImg).map(([key, value], index) => (

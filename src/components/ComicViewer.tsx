@@ -13,7 +13,6 @@ export const ComicViewer = () => {
                 setCurrentPage(currentPage + 2);
             }
         };
-
         const goToPrevPage = () => {
             if (currentPage > 0) {
                 setCurrentPage(currentPage - 2);
