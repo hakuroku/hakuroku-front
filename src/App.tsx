@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, useLocation} from "react-router-dom";
+import { LoginAdmin } from "./templates/LoginAdmin";
 import { Header } from "./templates/Header";
 import { Top } from "./templates/Top";
 import { Footer } from "./templates/Footer";
@@ -40,6 +41,7 @@ export const App = () => {
       {showHeader &&  <div className={`${location.pathname === '/' ? 'absolute top-0 left-0 w-full z-50 transition-opacity duration-500 ease-in-out' : null} ${showHeader ? 'opacity-100 animate-fadeIn2' : 'opacity-0'}`}><Header /></div>}
       <div className="flex-1 relative">
           <Routes>
+            <Route path='/admin/login' element={<LoginAdmin/>}/>
             <Route path='/' element={<Top />} />
             <Route path='/upload/episode' element={<UploadEpisode />} />
             <Route path='/episode/:url' element={<Episode />} />

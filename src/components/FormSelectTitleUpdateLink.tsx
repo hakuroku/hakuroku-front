@@ -1,7 +1,7 @@
 import { useModalTopLinksSelect } from "../hooks/activeUIStore";
 import { useSeriesTitlesGet } from "../hooks/useGetData";
 import { useSelectSeriesDashBoard } from "../hooks/activeUIStore";
-import { SelectBar } from "./selectBar";
+import { SelectBar } from "./SelectBar";
 
 interface Item {
     item: string;
@@ -15,13 +15,13 @@ export const FormSelectTitleUpdateLink: React.FC<Item> = ({item, setState}) => {
 console.log(seriesSelect)
     return (
         <>
-            <div className="flex justify-center">
+            <div className="flex justify-center pb-8">
                 <p className="text-center">{item}</p>
                 <div>
                     <div onClick={()=> setSeriesSelect(!seriesSelect)}><SelectBar title={seriesTitle} />
                             {seriesTitles && seriesSelect ? (seriesTitles.map((i, index) => ( 
                                 i.series_title !== seriesTitle ?
-                                <div onClick={() => { setState(i.id); setSeriesTitle(i.series_title) }}><SelectBar title={i.series_title} key={index} /></div>
+                                <div key={index} onClick={() => { setState(i.id); setSeriesTitle(i.series_title) }}><SelectBar title={i.series_title} key={index} /></div>
                             : null
                             ))) : null}
                     </div>

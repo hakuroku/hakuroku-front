@@ -10,14 +10,13 @@ import { ButtonSubmit } from "../components/ButtonSubmit";
 import { SeriesTitles } from "../types/stateGetData";
 import { FormSelectTitleUpdateLink } from "../components/FormSelectTitleUpdateLink";
 
-
 export const FormChangeIcon = () => {
     const navigate = useNavigate()
     const { addSeriesId, addTopView, addLinkView, setAddSeriesId,setAddTopView, setAddLinkView} = useAddIconData();
     const { modalChangeIcon, setModalChangeIcon } = useModalIcon();
     const { seriesTitles, setSeriesTitles} = useSeriesTitlesGet();
     const { setSeriesSelect} = useModalTopLinksSelect();
-    const { seriesTitle, setSeriesTitle } = useSelectSeriesDashBoard();
+    const { setSeriesTitle } = useSelectSeriesDashBoard();
 
     console.log(addSeriesId, addTopView, addLinkView)
     const updateData = {
@@ -71,7 +70,7 @@ export const FormChangeIcon = () => {
         setAddSeriesId(null);
         setAddTopView(null);
         setAddLinkView(null);
-        setSeriesSelect(false)
+        setSeriesSelect(false);
         getData<SeriesTitles>('get/change/top-links')
             .then((data) => setSeriesTitles(data))
             .catch((error) => console.error(error))
@@ -98,7 +97,7 @@ export const FormChangeIcon = () => {
                        <>
                            <form onSubmit={handlePostSubmit} encType="multipart/form-data">
                                <FormSelectTitleUpdateLink item={'追加するシリーズ：'} setState={setAddSeriesId} />
-                               <div className="flex justify-between p-8">
+                               <div className="flex justify-between pb-8">
                                    <input type="file" name="addIconTopVIew" onChange={(e) => setAddTopView(handleFileChange(e))} /><br />
                                    <input type="file" name="addIconView" onChange={(e) => setAddLinkView(handleFileChange(e))} /><br />
                                </div>
@@ -109,7 +108,6 @@ export const FormChangeIcon = () => {
                        </>
                        ) }
                </div>
-   
                <div onClick={()=>{ setModalChangeIcon(false)}}><ModalBack/></div>
            </>
        )

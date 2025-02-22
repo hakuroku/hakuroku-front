@@ -64,8 +64,6 @@ export const FormUploadData = () => {
         PostEpisode();
     }
 
-
-    // -------------------------データ取得---------------------
     useEffect(() => {
         getData<PostSeries>('get/upload-series')
             .then((data) => setSeries(data))

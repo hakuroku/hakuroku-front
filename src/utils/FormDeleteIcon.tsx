@@ -61,7 +61,7 @@ export const FormDeleteIcon = () => {
 
     return (
         <>
-            <div className="bg-main_C w-[800px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left" onClick={()=> setSeriesSelect(false)}>
+            <div className="bg-main_C w-[800px] h-fit m-auto p-6 rounded-lg fixed inset-2/4 translate-x-[-50%]  z-50  text-left">
                 {seriesTitles === undefined || seriesTitles.length === 0 ? (
                     <>
                     <div className="text-center">
