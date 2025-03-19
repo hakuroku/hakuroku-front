@@ -23,7 +23,7 @@ export const FormUploadData = () => {
     // -------------------------データ送信---------------------
     const PostEpisode = async () => {
         try {
-            const url = 'http://127.0.0.1:8000/api/upload'
+            const url = 'http://ec2-13-230-69-57.ap-northeast-1.compute.amazonaws.com/api/upload'
             const formData = new FormData();
             const data = {
                 'episode_title': episode_title,

@@ -11,7 +11,7 @@ export const FormLogInAdmin = () => {
 
     const login = async () => {
         try{
-            const response = await axios.post('http://127.0.0.1:8000/api/admin/login',{
+            const response = await axios.post('http://ec2-13-230-69-57.ap-northeast-1.compute.amazonaws.com/api/admin/login',{
                 email: nameAdmin,
                 password: passAdmin
             });

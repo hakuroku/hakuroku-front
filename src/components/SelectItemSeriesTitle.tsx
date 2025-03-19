@@ -1,4 +1,4 @@
-import { SelectBar } from "./selectBar"
+import { SelectBar } from "./SelectBar"
 
 interface Value {
     title: string
