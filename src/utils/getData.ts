@@ -3,7 +3,7 @@ import axios, {AxiosResponse} from "axios";
 
 export const getData = async <T>(endpoint: string): Promise<T | void> => {
     try {
-        const url: string = 'http://127.0.0.1:8000/api/' + endpoint;
+        const url: string = 'http://ec2-13-230-69-57.ap-northeast-1.compute.amazonaws.com/api/' + endpoint;
          //awaitでPromiseを解除
         const response: AxiosResponse<T> = await axios.get(url); //Promise<AxiosResponse<any, any>> -> AxiosResponse<any, any>
         const result: T = response.data;

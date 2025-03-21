@@ -1,7 +1,6 @@
 import { create } from 'zustand'
 import { TopCounter, CurrentPage, ActiveState, selectViewSeries, ActiveModalTopIcon, ActiveModalTopLinksSelect, SelectSeriesTitle } from './interface/activeUI'
-import { TopSeriesTitle } from '../components/TopSeriesTitle'
-import { Series } from '../templates/Series'
+
 
 
 export const useTopCount = create<TopCounter>((set) => ({

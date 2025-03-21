@@ -1,4 +1,3 @@
-import { StateActive } from "../types/stateActive"
 
 interface Text {
     text: string;

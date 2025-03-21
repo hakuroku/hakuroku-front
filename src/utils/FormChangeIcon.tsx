@@ -27,7 +27,7 @@ export const FormChangeIcon = () => {
     
     const AddIcon = async () => {
         try {
-            const url = 'http://127.0.0.1:8000/api/change/top-link'
+            const url = 'http://ec2-13-230-69-57.ap-northeast-1.compute.amazonaws.com/api/change/top-link'
             const formData = new FormData();
             for (const [key, value] of Object.entries(updateData)) {
                 if (value) {
